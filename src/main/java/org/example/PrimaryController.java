@@ -1,8 +1,9 @@
 package org.example;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
-import brains.Artikel;
+import Objects.Artikel;
 import brains.DatabaseStuff;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,14 +28,39 @@ public class PrimaryController {
         DatabaseStuff.readDB();
         for(Artikel a : DatabaseStuff.testLista){
             HBox härj = new HBox();
+
+            Label l1 = new Label(String.valueOf(a.getArtikelNr()));
+            Label l2 = new Label(String.valueOf(a.getArtikelNamn()));
+            Label l3 = new Label(String.valueOf(a.getPris()));
+
             Button but1 = new Button(String.valueOf(a.getArtikelNr()));
             Button but2 = new Button(String.valueOf(a.getArtikelNamn()));
             Button but3 = new Button(String.valueOf(a.getPris()));
-            härj.getChildren().add(but1);
-            härj.getChildren().add(but2);
-            härj.getChildren().add(but3);
+
+            härj.getChildren().add(l1);
+            härj.getChildren().add(l2);
+            härj.getChildren().add(l3);
             sigmaVBox.getChildren().add(härj);
         }
+        /*DatabaseStuff ds = new DatabaseStuff();
+        Field[] f = ds.latchRead();
+        for(Field a : f){
+            HBox härj = new HBox();
+
+            Label l1 = new Label(String.valueOf(a.getArtikelNr()));
+            Label l2 = new Label(String.valueOf(a.getArtikelNamn()));
+            Label l3 = new Label(String.valueOf(a.getPris()));
+
+            Button but1 = new Button(String.valueOf(a.getArtikelNr()));
+            Button but2 = new Button(String.valueOf(a.getArtikelNamn()));
+            Button but3 = new Button(String.valueOf(a.getPris()));
+
+            härj.getChildren().add(l1);
+            härj.getChildren().add(l2);
+            härj.getChildren().add(l3);
+            sigmaVBox.getChildren().add(härj);
+            */
+
     }
 
     @FXML

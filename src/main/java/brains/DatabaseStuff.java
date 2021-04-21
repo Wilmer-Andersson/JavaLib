@@ -1,9 +1,9 @@
 package brains;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import Objects.Artikel;
+
+import java.lang.reflect.Field;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,10 +33,6 @@ public class DatabaseStuff {
             psW.setString(2,aNamn);
             psW.setInt(3,aPris);
             psW.executeUpdate();
-
-            //psW.executeQuery();
-            //ResultSet rs = psW.executeQuery();
-
 
             con.close();
 
@@ -78,6 +74,29 @@ public class DatabaseStuff {
 
     }
 
+    public Field[] latchRead(){
+        Field[] fields = this.getClass().getDeclaredFields();
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            PreparedStatement ps = con.prepareStatement("select * from Artiklar");
+            ResultSet resultSet = ps.executeQuery();
+
+
+            for (Field field : fields) {
+                Object value;
+                try {
+                    value = resultSet.getObject(field.getName());
+                    field.set(this, value);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return fields;
+    }
+
     public static void readDB(){
 
 
@@ -87,12 +106,14 @@ public class DatabaseStuff {
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from javaTestDB.artiklar where artikelNamn = ?");
+            PreparedStatement ps = con.prepareStatement("select * from javaTestDB.artiklar where artikelNamn like ?");
             ps.setString(1,sok);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
                 System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
+                System.out.println(
+                        rs.getObject(1));
                 testLista.add(new Artikel(rs.getInt(1), rs.getString(2), rs.getInt(3)));
             }
 

@@ -12,6 +12,11 @@
 -fx-background-color: #E0E1DD;
 }
 
+.BodyTyp{
+    -fx-min-height: 100%;
+    -fx-min-width: 100%;
+}
+
 .Header {
     -fx-background-color: #778DA9;
 }
