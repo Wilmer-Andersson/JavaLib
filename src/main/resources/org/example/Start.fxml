@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.StartController">
    <right>
       <AnchorPane prefHeight="316.0" prefWidth="236.0" style="-fx-background-color: #A1B1F8#A1B1F8;" BorderPane.alignment="CENTER" />
    </right>
@@ -21,17 +21,13 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button layoutX="502.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #4063FC#4063FC;" text="Logga in">
+            <Button fx:id="startLoginButtonPressed" layoutX="502.0" layoutY="25.0" mnemonicParsing="false" onAction="#StartloginButtonPressed" style="-fx-background-color: #4063FC#4063FC;" text="Logga in">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <ImageView fitHeight="79.0" fitWidth="99.0" layoutX="251.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Bilder/download.jpg" />
-               </image>
-            </ImageView>
-            <Button layoutX="389.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Registrera ">
+
+            <Button fx:id="startRegisterButtonPressed" layoutX="390.0" layoutY="25.0" mnemonicParsing="false" onAction="#startRegisterButtonPressed" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Registrera ">
                <font>
                   <Font size="17.0" />
                </font>

@@ -1,5 +1,6 @@
 package org.example;
 
+import Objects.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,11 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    public static User globalCurrentUser;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("Start"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }

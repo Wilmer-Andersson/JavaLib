@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LogInController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,9 +24,9 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <PasswordField layoutX="251.0" layoutY="200.0" prefHeight="26.0" prefWidth="106.0" promptText="Lösenord" />
-                  <TextField layoutX="251.0" layoutY="167.0" prefHeight="26.0" prefWidth="106.0" promptText="Användarnamn" />
-                  <Button layoutX="272.0" layoutY="237.0" mnemonicParsing="false" text="Logga in" />
+                  <PasswordField fx:id="passwordField" layoutX="251.0" layoutY="200.0" prefHeight="26.0" prefWidth="106.0" promptText="Lösenord" />
+                  <TextField fx:id="usernameField" layoutX="251.0" layoutY="167.0" prefHeight="26.0" prefWidth="106.0" promptText="Användarnamn" />
+                  <Button fx:id="loginButtonGrej" layoutX="272.0" layoutY="237.0" mnemonicParsing="false" onAction="#logInButtonPressed" text="Logga in" />
                </children>
             </AnchorPane>
          </children>
