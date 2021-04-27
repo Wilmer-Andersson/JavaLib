@@ -5,6 +5,9 @@ public class Artikel {
     private String artikelNamn;
     private int pris;
 
+    public Artikel(){
+
+    }
 
     public Artikel(int artikelNr, String artikelNamn, int pris) {
         this.artikelNr = artikelNr;

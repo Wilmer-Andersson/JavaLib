@@ -1,5 +1,6 @@
 package brains;
 
+import Objects.Artikel;
 import Objects.User;
 
 import java.sql.*;
@@ -29,7 +30,7 @@ public class main {
 
     public static void choice2(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Login: Mata in [Login]/[Register]");
+        System.out.println("Login: Mata in [Login]/[Register]/[Loan]/[Search]");
         String s = input.nextLine();
         if(s.equals("Login")){
             System.out.println("Mata in användarnamn:");
@@ -39,6 +40,13 @@ public class main {
             currentUser = Login.authUser(username,password);
         } if(s.equals("Register")){
             Login.register();
+        } if(s.equals("Loan")){
+            OutLoan.CreateLoan(currentUser);
+        } if(s.equals("Search")){
+            System.out.println("Mata in söksträng: ");
+            Object o = new Artikel();
+            Artikel a = new Artikel();
+            Search.article(input.nextLine(),o.getClass());
         }
     }
 }
