@@ -17,12 +17,6 @@ public class PrimaryController {
     public VBox sigmaVBox;
     int i;
 
-    public Button primaryButton;
-
-    public void ligmaLable(){
-        i++;
-        label1.setText(String.valueOf(i));
-    }
 
     public void initialize(){
         DatabaseStuff.readDB();

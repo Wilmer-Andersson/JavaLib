@@ -14,6 +14,7 @@
       <AnchorPane prefHeight="316.0" prefWidth="236.0" style="-fx-background-color: #A1B1F8#A1B1F8;" BorderPane.alignment="CENTER" />
    </right>
    <top>
+
       <AnchorPane prefHeight="84.0" prefWidth="600.0" style="-fx-background-color: #5F7AF1#5F7AF1;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="2.0" layoutY="4.0" prefHeight="74.0" prefWidth="254.0" text="El Grande Bobliotek">
@@ -26,7 +27,12 @@
                   <Font size="17.0" />
                </font>
             </Button>
+            <Button fx:id="startProfileButtonPressed" layoutX="-1000" layoutY="25.0" mnemonicParsing="false" onAction="#startProfileButtonPressed" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Profil ">
+               <font>
+                  <Font size="17.0" />
+               </font>
 
+            </Button>
             <Button fx:id="startRegisterButtonPressed" layoutX="390.0" layoutY="25.0" mnemonicParsing="false" onAction="#startRegisterButtonPressed" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Registrera ">
                <font>
                   <Font size="17.0" />

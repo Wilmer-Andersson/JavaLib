@@ -8,6 +8,11 @@
     Vit #E0E1DD;
     */
 
+.errorAids{
+    -fx-background-color: #ff0000;
+    -fx-border-color: #ff0000;
+}
+
 .root {
 -fx-background-color: #E0E1DD;
 }

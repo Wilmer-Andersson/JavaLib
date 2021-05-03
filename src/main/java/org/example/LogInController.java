@@ -23,11 +23,11 @@ public class LogInController {
         currentUser = Login.authUser(username,password);
         if(currentUser == null){
             loginButtonGrej.setText("Login failed!");
+            loginButtonGrej.getStyleClass().add(".errorAids"); //Verkar inte göra nått vettigt asså
         } else{
             loginButtonGrej.setText("Login Successful!");
             App.globalCurrentUser = currentUser;
             App.setRoot("Start");
         }
-
     }
 }

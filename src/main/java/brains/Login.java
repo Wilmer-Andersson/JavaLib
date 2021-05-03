@@ -45,7 +45,7 @@ public class Login {
         return null;
     }
 
-    public static void register(){
+    public static void registerTermial(){
         String userName;
         String fName;
         String lName;
@@ -84,5 +84,40 @@ public class Login {
             throwables.printStackTrace();
         }
 
+    }
+
+    public static void register(String userName,String fName,String lName,String telNr,String mail,String password){
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("REGISTRERING!");
+        System.out.println("Mata in användarnamn: ");
+        userName = input.next();
+        System.out.println("Mata in förnamn: ");
+        fName = input.next();
+        System.out.println("Mata in efternamn: ");
+        lName = input.next();
+        System.out.println("Mata in accessLevel: ");
+        accessLevel = input.nextInt();
+        System.out.println("Mata in lösenord: ");
+        password = input.next();
+        password = BCrypt.withDefaults().hashToString(12,password.toCharArray());
+
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            PreparedStatement ps = con.prepareStatement("insert into Users(userName,fName,lName,accessLevel,password) values(?,?,?,?,?)");
+            ps.setString(1,userName);
+            ps.setString(2,fName);
+            ps.setString(3,lName);
+            ps.setInt(4,accessLevel);
+            ps.setString(5,password);
+
+            ps.executeUpdate();
+
+            System.out.println("Registration complete!");
+
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

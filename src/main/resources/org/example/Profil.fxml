@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8 #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="org.example.ProfileController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8 #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="101.0" prefWidth="600.0" style="-fx-background-color: #5F7AF1#5F7AF1 #5F7AF1#5F7AF1;" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button layoutX="473.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Startsida">
+            <Button fx:id="homeButton" onAction="#homeButtonPressed" layoutX="473.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Startsida">
                <font>
                   <Font size="17.0" />
                </font>
