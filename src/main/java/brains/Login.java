@@ -86,38 +86,31 @@ public class Login {
 
     }
 
-    public static void register(String userName,String fName,String lName,String telNr,String mail,String password){
+    public static boolean register(String userName,String fName,String lName,String telNr,String mail,String password){
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("REGISTRERING!");
-        System.out.println("Mata in användarnamn: ");
-        userName = input.next();
-        System.out.println("Mata in förnamn: ");
-        fName = input.next();
-        System.out.println("Mata in efternamn: ");
-        lName = input.next();
-        System.out.println("Mata in accessLevel: ");
-        accessLevel = input.nextInt();
-        System.out.println("Mata in lösenord: ");
-        password = input.next();
         password = BCrypt.withDefaults().hashToString(12,password.toCharArray());
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("insert into Users(userName,fName,lName,accessLevel,password) values(?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into Users(userName,fName,lName,accessLevel,password,eMail,telephoneNumber) values(?,?,?,?,?,?,?)");
             ps.setString(1,userName);
             ps.setString(2,fName);
             ps.setString(3,lName);
-            ps.setInt(4,accessLevel);
+            ps.setInt(4,0);
             ps.setString(5,password);
+            ps.setString(6,mail);
+            ps.setString(7,telNr);
 
             ps.executeUpdate();
 
             System.out.println("Registration complete!");
-
             con.close();
+            return true;
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
     }
 }

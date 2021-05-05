@@ -39,7 +39,7 @@ public class main {
             String password = input.nextLine();
             currentUser = Login.authUser(username,password);
         } if(s.equals("Register")){
-            Login.registerTerminal();
+            Login.registerTermial();
         } if(s.equals("Loan")){
             OutLoan.CreateLoan(currentUser);
         } if(s.equals("Search")){

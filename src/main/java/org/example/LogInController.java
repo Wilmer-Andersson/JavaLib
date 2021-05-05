@@ -10,11 +10,13 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class LogInController {
+
     User currentUser;
 
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
-    @FXML private Button loginButtonGrej;
+    public Button loginPasswordButton;
+    public Button loginCancelButton;
 
     public void logInButtonPressed(ActionEvent actionEvent) throws IOException {
         String username = usernameField.getText();
@@ -22,12 +24,16 @@ public class LogInController {
 
         currentUser = Login.authUser(username,password);
         if(currentUser == null){
-            loginButtonGrej.setText("Login failed!");
-            loginButtonGrej.getStyleClass().add(".errorAids"); //Verkar inte göra nått vettigt asså
+            loginPasswordButton.setText("Login failed!");
+            loginPasswordButton.getStyleClass().add(".errorAids"); //Verkar inte göra nått vettigt asså
         } else{
-            loginButtonGrej.setText("Login Successful!");
+            loginPasswordButton.setText("Login Successful!");
             App.globalCurrentUser = currentUser;
             App.setRoot("Start");
         }
+    }
+
+    public void escapeButtonPressed(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Start");
     }
 }

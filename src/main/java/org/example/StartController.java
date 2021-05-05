@@ -15,9 +15,6 @@ public class StartController {
 
     public void initialize(){
         if(!(App.globalCurrentUser == null)){
-            //startRegisterButtonPressed.setText("Profil!");
-            //startRegisterButtonPressed.
-            //startRegisterButtonPressed.setOnAction(startProfileButtonPressed());
             startLoginButtonPressed.relocate(-100,-100);
             startRegisterButtonPressed.relocate(-100,-100);
             startProfileButtonPressed.relocate(502.25,25);
