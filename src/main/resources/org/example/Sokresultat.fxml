@@ -6,31 +6,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="org.example.SearchController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.SearchController">
    <top>
       <AnchorPane prefHeight="64.0" prefWidth="563.0" style="-fx-background-color: #5F7AF1#5F7AF1;" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="85.0" layoutY="20.0" style="-fx-background-color: FFFFFFFFFFFF;" />
-            <Button onAction="#SearchArticle" layoutX="253.0" layoutY="20.0" mnemonicParsing="false" text="SÖÖÖK" />
+            <TextField fx:id="SearchbarThingy" layoutX="85.0" layoutY="20.0" style="-fx-background-color: FFFFFFFFFFFF;" />
+            <Button layoutX="253.0" layoutY="20.0" mnemonicParsing="false" onAction="#SearchArticle" text="SÖÖÖK" />
          </children></AnchorPane>
    </top>
    <center>
       <AnchorPane prefHeight="358.0" prefWidth="643.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="600.0">
+            <VBox fx:id="articleVBox" prefHeight="200.0" prefWidth="600.0">
                <children>
-                  <HBox prefHeight="68.0" prefWidth="575.0">
+                  <HBox fx:id="articlesHBox" prefHeight="68.0" prefWidth="575.0">
                      <children>
                         <HBox prefHeight="62.0" prefWidth="273.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="Titel:" />
-                                    <Label text="Författare:" />
-                                    <Label text="Sidor:" />
-                                    <Label text="Genre:" />
+                                    <Label fx:id="titelLabel" text="Titel:" />
+                                    <Label fx:id="authorLabel" text="Författare:" />
+                                    <Label fx:id="pagesLabel" text="Sidor:" />
+                                    <Label fx:id="genreLabel" text="Genre:" />
                                  </children>
                               </VBox>
                            </children>
@@ -41,16 +42,42 @@
                                  <children>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0">
                                        <bottom>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" text="Lägg till i favoriter" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="favoriteButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" text="Lägg till i favoriter" BorderPane.alignment="CENTER" />
                                        </bottom>
                                        <top>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" text="Boka" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="loanButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" text="Boka" BorderPane.alignment="CENTER" />
                                        </top>
                                     </BorderPane>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Label" />
+                                    <Label text="Label" />
+                                    <Label text="Label" />
+                                    <Label text="Label" />
+                                 </children>
+                              </VBox>
+                           </left>
+                           <right>
+                              <VBox prefHeight="100.0" prefWidth="503.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Button" />
+                                 </children>
+                              </VBox>
+                           </right>
+                           <center>
+                              <StackPane prefHeight="100.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
                      </children>
                   </HBox>
                </children>

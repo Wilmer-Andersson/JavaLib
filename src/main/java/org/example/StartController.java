@@ -35,4 +35,8 @@ public class StartController {
     public void StartloginButtonPressed(ActionEvent actionEvent) throws IOException {
         App.setRoot("Logga_in");
     }
+
+    public void movetoSearch(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Sokresultat");
+    }
 }

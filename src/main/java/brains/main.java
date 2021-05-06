@@ -46,7 +46,7 @@ public class main {
             System.out.println("Mata in söksträng: ");
             Object o = new Artikel();
             Artikel a = new Artikel();
-            Search.article(input.nextLine(),o.getClass());
+            Search.article(input.nextLine());
         }
     }
 }
