@@ -1,5 +1,6 @@
 package brains;
 
+import Objects.Artikel;
 import Objects.User;
 
 import java.sql.*;
@@ -12,21 +13,15 @@ public class OutLoan {
     static String dbPass = "Lösenord";
     static Scanner input = new Scanner(System.in);
 
-    public static void CreateLoan(User user){
+    public static void CreateLoan(User user, String artikelID,int loanTime){
 
-        System.out.println("Mata in artikelID: ");
-        String artikelID = input.next();
-        System.out.println("Användare: " + user.getUserName());
-        //String userName = input.next();
-        System.out.println("Mata in lånetid: ");
-        int loanDuration = input.nextInt();
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
             PreparedStatement ps = con.prepareStatement("insert into Loans(artikelID,userName,loanDuration,loanStartDate) values(?,?,?,?)");
             ps.setString(1,artikelID);
             ps.setString(2,user.getUserName());
-            ps.setInt(3,loanDuration);
+            ps.setInt(3,loanTime);
             ps.setDate(4, Date.valueOf(LocalDate.now()));
 
             ps.executeUpdate();

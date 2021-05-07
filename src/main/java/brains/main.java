@@ -41,7 +41,7 @@ public class main {
         } if(s.equals("Register")){
             Login.registerTermial();
         } if(s.equals("Loan")){
-            OutLoan.CreateLoan(currentUser);
+            //OutLoan.CreateLoan(currentUser);
         } if(s.equals("Search")){
             System.out.println("Mata in söksträng: ");
             Object o = new Artikel();
