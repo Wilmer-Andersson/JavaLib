@@ -34,6 +34,6 @@ public class StartController {
     }
 
     public void startRegisterButtonPressed(ActionEvent actionEvent) throws IOException {
-        App.setRoot("registerv2");
+        App.setRoot("Registrering");
     }
 }

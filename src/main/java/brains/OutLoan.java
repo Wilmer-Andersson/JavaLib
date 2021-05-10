@@ -13,11 +13,19 @@ public class OutLoan {
     static String dbPass = "Lösenord";
     static Scanner input = new Scanner(System.in);
 
-    public static void CreateLoan(User user, String artikelID,int loanTime){
-
+    public static void CreateLoan(User user, String artikelID,int loanTime) throws SQLException {
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+
+            PreparedStatement checkAmount = con.prepareStatement("select antal from artiklar where artikelID = ?");
+            checkAmount.setString(1,artikelID);
+            ResultSet rs = checkAmount.executeQuery();
+
+            if(rs.getInt("antal") <= 1){
+
+            }
+
             PreparedStatement ps = con.prepareStatement("insert into Loans(artikelID,userName,loanDuration,loanStartDate) values(?,?,?,?)");
             ps.setString(1,artikelID);
             ps.setString(2,user.getUserName());
