@@ -118,11 +118,10 @@ public class SearchController {
             Button favorite = new Button(a.getArtikelNamn());
             Button loan = new Button(a.getArtikelNamn());
 
-            //Såtter vad som ska hända när man klickar på knappen :=)
+            //Sätter vad som ska hända när man klickar på knappen :=)
             loan.setOnAction(new EventHandler() {
                 @Override
                 public void handle(Event event) {
-                    System.out.println("LIGMA NUTZ");
                     OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),14);
                 }
             });

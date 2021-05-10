@@ -18,19 +18,21 @@ public class RegistrerController {
     public TextField registerPasswordRepeatField;
     public Button registerButton;
 
-    private String fName = registerFnameField.getText();
-    private String eName = registerEnameField.getText();
-    private String username = registerUsernameField.getText();
-    private String phoneNr = registerPhoneNrField.getText();
-    private String eMail = registerMailField.getText();
-    private String password = registerPasswordField.getText();
-    private String passwordRepeat = registerPasswordRepeatField.getText();
+
 
     public void registerHomeButton(ActionEvent actionEvent) throws IOException {
         App.setRoot("Start");
     }
 
     public void registerButtonPressed(ActionEvent actionEvent) throws IOException {
+        String fName = registerFnameField.getText();
+        String eName = registerEnameField.getText();
+        String username = registerUsernameField.getText();
+        String phoneNr = registerPhoneNrField.getText();
+        String eMail = registerMailField.getText();
+        String password = registerPasswordField.getText();
+        String passwordRepeat = registerPasswordRepeatField.getText();
+
         //Kikar så att alla fällt är ifyllda och att mailen innehåller @
         if(eMail.contains("@")
                 && !fName.equals("")

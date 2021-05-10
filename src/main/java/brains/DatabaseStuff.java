@@ -74,29 +74,6 @@ public class DatabaseStuff {
 
     }
 
-    public Field[] latchRead(){
-        Field[] fields = this.getClass().getDeclaredFields();
-        try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from Artiklar");
-            ResultSet resultSet = ps.executeQuery();
-
-
-            for (Field field : fields) {
-                Object value;
-                try {
-                    value = resultSet.getObject(field.getName());
-                    field.set(this, value);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return fields;
-    }
-
     public static void readDB(){
 
 
@@ -114,7 +91,7 @@ public class DatabaseStuff {
                 System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
                 System.out.println(
                         rs.getObject(1));
-                testLista.add(new Artikel(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+                testLista.add(new Artikel(rs.getInt(1), rs.getString(2)));
             }
 
             con.close();
@@ -122,7 +99,7 @@ public class DatabaseStuff {
             System.out.println("------------------------");
 
             for(Artikel a : testLista){
-                System.out.println(a.getArtikelNr() + ", " + a.getArtikelNamn()+", " + a.getPris());
+                System.out.println(a.getArtikelNr() + ", " + a.getArtikelNamn());
             }
 
 

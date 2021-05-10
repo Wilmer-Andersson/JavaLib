@@ -38,7 +38,7 @@ public class Search {
                 String[] ligma = new String[testHärj];
 
                 //System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
-                testLista.add(new Artikel(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+                testLista.add(new Artikel(rs.getInt(1), rs.getString(2)));
                 //testLista.add(new Artikel());
             }
 

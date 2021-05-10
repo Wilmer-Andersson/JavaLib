@@ -25,15 +25,15 @@ public class PrimaryController {
 
             Label l1 = new Label(String.valueOf(a.getArtikelNr()));
             Label l2 = new Label(String.valueOf(a.getArtikelNamn()));
-            Label l3 = new Label(String.valueOf(a.getPris()));
+            //Label l3 = new Label(String.valueOf(a.getPris()));
 
             Button but1 = new Button(String.valueOf(a.getArtikelNr()));
             Button but2 = new Button(String.valueOf(a.getArtikelNamn()));
-            Button but3 = new Button(String.valueOf(a.getPris()));
+            //Button but3 = new Button(String.valueOf(a.getPris()));
 
             härj.getChildren().add(l1);
             härj.getChildren().add(l2);
-            härj.getChildren().add(l3);
+            //härj.getChildren().add(l3);
             sigmaVBox.getChildren().add(härj);
         }
         /*DatabaseStuff ds = new DatabaseStuff();

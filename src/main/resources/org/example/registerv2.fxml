@@ -10,7 +10,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.RegistrerController">   <top>
       <AnchorPane prefHeight="84.0" prefWidth="600.0" style="-fx-background-color: #5F7AF1#5F7AF1 #5F7AF1#5F7AF1;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="24.0" text="Reg">
+            <Label layoutX="14.0" layoutY="24.0" text="Registrering">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>

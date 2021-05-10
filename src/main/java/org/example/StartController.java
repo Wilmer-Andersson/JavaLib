@@ -1,8 +1,6 @@
 package org.example;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -23,11 +21,6 @@ public class StartController {
         }
     }
 
-    @FXML
-    public void startRegisterButtonPressed(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Registrering");
-    }
-
     public void startProfileButtonPressed(ActionEvent actionEvent) throws IOException {
         App.setRoot("Profil");
     }
@@ -38,5 +31,9 @@ public class StartController {
 
     public void movetoSearch(ActionEvent actionEvent) throws IOException {
         App.setRoot("Sokresultat");
+    }
+
+    public void startRegisterButtonPressed(ActionEvent actionEvent) throws IOException {
+        App.setRoot("registerv2");
     }
 }
