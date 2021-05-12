@@ -31,24 +31,12 @@ public class Search {
             PreparedStatement ps = con.prepareStatement("select * from javaTestDB.artiklar where artikelNamn like ?");
             ps.setString(1,"%"+searchString+"%");
             ResultSet rs = ps.executeQuery();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int testHärj = rsmd.getColumnCount();
 
             while(rs.next()) {
-                String[] ligma = new String[testHärj];
-
-                //System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
                 testLista.add(new Artikel(rs.getInt(1), rs.getString(2)));
-                //testLista.add(new Artikel());
             }
 
             con.close();
-
-            System.out.println("------------------------");
-
-           /* for(Artikel a : testLista){
-                System.out.println(a.getArtikelNr() + ", " + a.getArtikelNamn()+", " + a.getPris());
-            }*/
 
 
         } catch (Exception e) {

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Login {
-    static String dbUrl = "jdbc:mysql://localhost:3306/javaTestDB";
+    static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
@@ -18,7 +18,7 @@ public class Login {
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
 
-            PreparedStatement ps = con.prepareStatement("select * from Users where userName = ?");
+            PreparedStatement ps = con.prepareStatement("select * from user where userName = ?");
             ps.setString(1,userName);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -27,8 +27,19 @@ public class Login {
                 BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),pw);
 
                 if(result.verified){
+                    int amountActive = 0;
                     System.out.println("Login succesfull");
-                    return new User(rs.getString("username"),rs.getString("fName"),rs.getString("lName"),rs.getInt("accessLevel"),rs.getString("password"));
+
+                   /* PreparedStatement ps1 = con.prepareStatement("select count(*) from loan where userName = ?");
+                    ps1.setString(1,userName);
+                    ResultSet rs1 = ps1.executeQuery();
+
+                    while(rs.next()){
+                        amountActive = rs.getInt("count(*)");
+                    }*/
+
+
+                    return new User(rs.getString("userName"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("telNr"),rs.getInt("accesLevel"), amountActive);
                 }
                 else{
                     System.out.println("Login failed");
@@ -92,13 +103,13 @@ public class Login {
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("insert into Users(userName,fName,lName,accessLevel,password,eMail,telephoneNumber) values(?,?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into user(userName, fName, lName, email, password, accesLevel, telNr) values(?,?,?,?,?,?,?)");
             ps.setString(1,userName);
             ps.setString(2,fName);
             ps.setString(3,lName);
-            ps.setInt(4,0);
+            ps.setString(4,mail);
             ps.setString(5,password);
-            ps.setString(6,mail);
+            ps.setInt(6,0);
             ps.setString(7,telNr);
 
             ps.executeUpdate();

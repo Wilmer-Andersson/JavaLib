@@ -14,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class SearchController {
@@ -122,7 +124,11 @@ public class SearchController {
             loan.setOnAction(new EventHandler() {
                 @Override
                 public void handle(Event event) {
-                    OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),14);
+                    try {
+                        OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),14);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             });
 
@@ -167,5 +173,9 @@ public class SearchController {
             // System.out.println(a.getArtikelNamn() + ", " + a.getArtikelNr() + ", " + a.getPris());
             //}
         }
+    }
+
+    public void homeButtonPressed(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Start");
     }
 }

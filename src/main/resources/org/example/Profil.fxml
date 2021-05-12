@@ -5,9 +5,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="org.example.ProfileController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8 #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" style="-fx-background-color: #A1B1F8#A1B1F8 #A1B1F8#A1B1F8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ProfileController">
    <top>
       <AnchorPane prefHeight="101.0" prefWidth="600.0" style="-fx-background-color: #5F7AF1#5F7AF1 #5F7AF1#5F7AF1;" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +17,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="homeButton" onAction="#homeButtonPressed" layoutX="473.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Startsida">
+            <Button fx:id="homeButton" layoutX="473.0" layoutY="34.0" mnemonicParsing="false" onAction="#homeButtonPressed" style="-fx-background-color: #4063FC#4063FC #4063FC#4063FC;" text="Startsida">
                <font>
                   <Font size="17.0" />
                </font>
@@ -32,10 +33,10 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <ScrollPane layoutY="55.0" prefHeight="322.0" prefWidth="200.0" style="-fx-background-color: #A1B1F8#A1B1F8 #A1B1F8#A1B1F8;">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
+            <ScrollPane hbarPolicy="NEVER" layoutY="47.0" prefHeight="321.0" prefWidth="200.0">
+               <content>
+                  <VBox fx:id="VBoxActiveLoan" prefHeight="321.0" prefWidth="200.0" />
+               </content>
             </ScrollPane>
          </children>
       </AnchorPane>
@@ -43,16 +44,16 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="-3.0" layoutY="55.0" prefHeight="321.0" prefWidth="201.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
             <Label layoutX="26.0" layoutY="23.0" text="Mina reservationer">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
+            <ScrollPane hbarPolicy="NEVER" layoutY="47.0" prefHeight="321.0" prefWidth="200.0">
+               <content>
+                  <VBox prefHeight="321.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </right>
@@ -65,15 +66,13 @@
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="80.0" text="Förnamn" />
-            <Label layoutX="85.0" layoutY="80.0" text="Label" />
+            <Label fx:id="fNameLabel" layoutX="85.0" layoutY="80.0" text="Label" />
             <Label layoutX="10.0" layoutY="105.0" text="Efternamn" />
-            <Label layoutX="85.0" layoutY="105.0" text="Label" />
+            <Label fx:id="lNameLabel" layoutX="85.0" layoutY="105.0" text="Label" />
             <Label layoutX="4.0" layoutY="129.0" text="Tel nummer " />
-            <Label layoutX="85.0" layoutY="129.0" text="Label" />
-            <Label layoutX="17.0" layoutY="151.0" text="Addess" />
-            <Label layoutX="85.0" layoutY="152.0" text="Label" />
-            <Label layoutX="10.0" layoutY="173.0" text="Aktiva lån " />
-            <Label layoutX="85.0" layoutY="173.0" text="Label" />
+            <Label fx:id="telNrLabel" layoutX="85.0" layoutY="129.0" text="Label" />
+            <Label layoutX="10.0" layoutY="151.0" text="Aktiva lån " />
+            <Label fx:id="activeLoansLabel" layoutX="85.0" layoutY="151.0" text="Label" />
          </children>
       </AnchorPane>
    </center>
