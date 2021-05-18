@@ -13,21 +13,29 @@ public class OutLoan {
     static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
     static String dbUser = "root";
     static String dbPass = "Lösenord";
-    static Scanner input = new Scanner(System.in);
 
     public static List searchLoans(User user) throws SQLException{
         List<Artikel> testLista = new ArrayList<>();
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from loan where userName = ?");
+            PreparedStatement ps = con.prepareStatement("select * from loan inner join articles a on loan.articleID = a.articleID where userName = ? and active = true");
             ps.setString(1,user.getUserName());
+            System.out.println(user.getUserName());
 
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                testLista.add(new Artikel(rs.getInt("artikelNr"),rs.getString("artikelNamn")));
+                System.out.println(rs.getString("articleID"));
+                testLista.add(new Artikel(rs.getInt("a.articleID"),rs.getString("articleName"),rs.getInt("loanTime")));
             }
+
+            for(Artikel a : testLista){
+                System.out.println(a.getArtikelNamn()+", "+a.getArtikelNr()+", "+a.getLaneTid());
+            }
+
             return testLista;
+
+
 
         } catch (SQLException throwables){
             return null;

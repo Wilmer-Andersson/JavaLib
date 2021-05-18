@@ -8,32 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
-    static String dbUrl = "jdbc:mysql://localhost:3306/javaTestDB";
+    static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
     static String dbUser = "root";
     static String dbPass = "Lösenord";
-
-    public <T> List<T> test(String searchString){
-        List<T> returnList = new ArrayList<>();
-
-
-        returnList.add((T) new Artikel());
-
-        return returnList;
-    }
 
 
 /* Requires a input string, returns a list with all matching rows */
     public static List article(String searchString){
 
-        List<Artikel> testLista = new ArrayList<>();
+        List<Object> testLista = new ArrayList<>();
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from javaTestDB.artiklar where artikelNamn like ?");
+            PreparedStatement ps = con.prepareStatement("select * from articles where articles.articleName like ?");
             ps.setString(1,"%"+searchString+"%");
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                testLista.add(new Artikel(rs.getInt(1), rs.getString(2)));
+                testLista.add(new Artikel(rs.getInt(1), rs.getString(2),rs.getInt("loanTime")));
             }
 
             con.close();
@@ -43,5 +34,88 @@ public class Search {
             e.printStackTrace();
         }
         return testLista;
+    }
+
+//Inputs search string and object type, 1 = book, 2 = movie, 3 = journal
+    public static List articlev2(String searchString,int type){
+
+        List<Object> articleList = new ArrayList<>();
+
+        String articleString = "book";
+
+        if(type == 1) articleString = "book";
+        if(type == 2) articleString = "movie";
+        if(type == 3) articleString = "journal";
+
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            String statement = "select * from articles join "+ articleString + " on articles.articleID = "+ articleString +".articleID where articleName like ?";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setString(1,"%"+searchString+"%");
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(type);
+            //Skapa en bok
+            if(type == 1){
+                while(rs.next()){
+                    articleList.add(new Artikel.Bok(
+                            rs.getInt("articleID"),
+                            rs.getString("articleName"),
+                            rs.getInt("loanTime"),
+                            rs.getString("storageSpace"),
+                            rs.getInt("amount"),
+                            rs.getString("genre"),
+                            rs.getString("language"),
+                            rs.getString("releaseDate"),
+                            rs.getString("publisher"),
+                            rs.getString("ISBN"),
+                            rs.getString("author"),
+                            rs.getString("edition")
+                    ));
+                }
+            }
+
+            //Skapa en film
+            if(type == 2){
+                while(rs.next()){
+                    articleList.add(new Artikel.Film(
+                            rs.getInt("articleID"),
+                            rs.getString("articleName"),
+                            rs.getInt("loanTime"),
+                            rs.getString("storageSpace"),
+                            rs.getInt("amount"),
+                            rs.getString("genre"),
+                            rs.getString("language"),
+                            rs.getString("releaseDate"),
+                            rs.getString("director")
+                    ));
+                }
+            }
+
+            //Skapa en tidsskrift
+            if(type == 3){
+                while(rs.next()){
+                    articleList.add(new Artikel.Tidsskrift(
+                            rs.getInt("articleID"),
+                            rs.getString("articleName"),
+                            rs.getInt("loanTime"),
+                            rs.getString("storageSpace"),
+                            rs.getInt("amount"),
+                            rs.getString("genre"),
+                            rs.getString("language"),
+                            rs.getString("releaseDate"),
+                            rs.getString("ISSN"),
+                            rs.getString("source")
+                    ));
+                }
+            }
+
+            con.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return articleList;
     }
 }

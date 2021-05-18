@@ -17,25 +17,29 @@
 -fx-background-color: #E0E1DD;
 }
 
-.BodyTyp{
-    -fx-min-height: 100%;
-    -fx-min-width: 100%;
-}
-
 .Header {
     -fx-background-color: #778DA9;
 }
 
 .Header Label{
-    -fx-font-size: 40;
+    -fx-font-size: 30;
 }
 
 .Header Button{
-    -fx-font-size: 20;
+    -fx-font-size: 14;
     -fx-background-color: #415A77;
     -fx-text-fill: #E0E1DD;
 }
 
 HBox{
     -fx-background-color: #E0E1DD;
+}
+
+Button {
+    -fx-background-color: #415A77;
+    -fx-text-fill: #E0E1DD;
+}
+
+.registerBox HBox Label{
+    -fx-pref-width: 150;
 }

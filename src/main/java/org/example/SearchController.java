@@ -21,13 +21,6 @@ import java.util.List;
 public class SearchController {
     public TextField SearchbarThingy;
     public VBox articleVBox;
-    public Label titelLabel;
-    public Label authorLabel;
-    public Label pagesLabel;
-    public Label genreLabel;
-    public Button favoriteButton;
-    public Button loanButton;
-    public HBox articlesHBox;
 
     public EventHandler<ActionEvent> initialize() {
 
@@ -125,7 +118,7 @@ public class SearchController {
                 @Override
                 public void handle(Event event) {
                     try {
-                        OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),14);
+                        OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

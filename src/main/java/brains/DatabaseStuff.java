@@ -89,9 +89,8 @@ public class DatabaseStuff {
 
             while(rs.next()) {
                 System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
-                System.out.println(
-                        rs.getObject(1));
-                testLista.add(new Artikel(rs.getInt(1), rs.getString(2)));
+                System.out.println(rs.getObject(1));
+                testLista.add(new Artikel(rs.getInt(1), rs.getString(2),rs.getInt("loanDuration")));
             }
 
             con.close();

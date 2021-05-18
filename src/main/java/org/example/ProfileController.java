@@ -34,9 +34,10 @@ public class ProfileController {
 
         List<Artikel> testLista = OutLoan.searchLoans(user);
 
-        for(Artikel a: testLista){
-            VBoxActiveLoan.getChildren().add(new Label(a.getArtikelNamn()));
+        if (!(testLista == null)){
+            for(Artikel a: testLista){
+                VBoxActiveLoan.getChildren().add(new Label("Artikel: " +a.getArtikelNamn()));
+            }
         }
-
     }
 }

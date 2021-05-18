@@ -3,14 +3,16 @@ package Objects;
 public class Artikel {
     private int artikelNr;
     private String artikelNamn;
+    private int laneTid;
 
     public Artikel(){
 
     }
 
-    public Artikel(int artikelNr, String artikelNamn) {
+    public Artikel(int artikelNr, String artikelNamn, int laneTid) {
         this.artikelNr = artikelNr;
         this.artikelNamn = artikelNamn;
+        this.laneTid = laneTid;
     }
 
     public int getArtikelNr() {
@@ -29,8 +31,14 @@ public class Artikel {
         this.artikelNamn = artikelNamn;
     }
 
-    class Bok extends Artikel{
-        int laneTid;
+    public int getLaneTid() { return laneTid; }
+
+    public void setLaneTid(int laneTid) { this.laneTid = laneTid; }
+
+    public static class Bok extends Artikel{
+
+
+
         String lagerPlats;
         int antal;
         String genre;
@@ -40,14 +48,6 @@ public class Artikel {
         String isbn;
         String författare;
         String upplaga;
-
-        public int getLaneTid() {
-            return laneTid;
-        }
-
-        public void setLaneTid(int laneTid) {
-            this.laneTid = laneTid;
-        }
 
         public String getLagerPlats() {
             return lagerPlats;
@@ -121,10 +121,12 @@ public class Artikel {
             this.upplaga = upplaga;
         }
 
-        public Bok(){ }
+        public Bok(){
 
-        public Bok(int laneTid, String lagerPlats, int antal, String genre, String språk, String utgivningsÅr, String förlag, String isbn, String författare, String upplaga) {
-            this.laneTid = laneTid;
+        }
+
+        public Bok(int artikelNr,String artikelnamn,int laneTid,String lagerPlats, int antal, String genre, String språk, String utgivningsÅr, String förlag, String isbn, String författare, String upplaga) {
+            super(artikelNr,artikelnamn,laneTid);
             this.lagerPlats = lagerPlats;
             this.antal = antal;
             this.genre = genre;
@@ -137,8 +139,7 @@ public class Artikel {
         }
     }
 
-    public class Film extends Artikel{
-        int laneTid;
+    public static class Film extends Artikel{
         String lagerPlats;
         int antal;
         String genre;
@@ -148,22 +149,14 @@ public class Artikel {
 
         public Film(){ }
 
-        public Film(int laneTid, String lagerPlats, int antal, String genre, String språk, String utgivningsÅr, String regissör) {
-            this.laneTid = laneTid;
+        public Film(int artikelNr,String artikelnamn,int laneTid, String lagerPlats, int antal, String genre, String språk, String utgivningsÅr, String regissör) {
+            super(artikelNr,artikelnamn,laneTid);
             this.lagerPlats = lagerPlats;
             this.antal = antal;
             this.genre = genre;
             this.språk = språk;
             this.utgivningsÅr = utgivningsÅr;
             this.regissör = regissör;
-        }
-
-        public int getLaneTid() {
-            return laneTid;
-        }
-
-        public void setLaneTid(int laneTid) {
-            this.laneTid = laneTid;
         }
 
         public String getLagerPlats() {
@@ -215,8 +208,7 @@ public class Artikel {
         }
     }
 
-    public class Tidsskrift extends Artikel{
-        int laneTid;
+    public static class Tidsskrift extends Artikel{
         String lagerPlats;
         int antal;
         String genre;
@@ -225,8 +217,10 @@ public class Artikel {
         String ISSN;
         String källa;
 
-        public Tidsskrift(int laneTid, String lagerPlats, int antal, String genre, String språk, String utgivningsDatum, String ISSN, String källa) {
-            this.laneTid = laneTid;
+        public Tidsskrift() {  }
+
+        public Tidsskrift(int artikelNr,String artikelnamn,int laneTid, String lagerPlats, int antal, String genre, String språk, String utgivningsDatum, String ISSN, String källa) {
+            super(artikelNr,artikelnamn,laneTid);
             this.lagerPlats = lagerPlats;
             this.antal = antal;
             this.genre = genre;
@@ -234,14 +228,6 @@ public class Artikel {
             this.utgivningsDatum = utgivningsDatum;
             this.ISSN = ISSN;
             this.källa = källa;
-        }
-
-        public int getLaneTid() {
-            return laneTid;
-        }
-
-        public void setLaneTid(int laneTid) {
-            this.laneTid = laneTid;
         }
 
         public String getLagerPlats() {
