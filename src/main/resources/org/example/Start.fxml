@@ -21,13 +21,19 @@
             <Button layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#SearchArticle" prefHeight="26.0" prefWidth="157.0" text="Söka artikel test" />
             <VBox alignment="CENTER_LEFT" layoutX="55.0" layoutY="85.0" prefHeight="100.0" prefWidth="83.0" spacing="10.0">
                <children>
-                  <RadioButton fx:id="radioButtonBook" mnemonicParsing="false" selected="true" text="Bok">
+                  <RadioButton fx:id="radioButtonBook" mnemonicParsing="false" onAction="#radioSelectBook" selected="true" text="Bok">
                      <toggleGroup>
                         <ToggleGroup fx:id="group" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="radioButtonMovie" mnemonicParsing="false" text="Film" toggleGroup="$group" />
-                  <RadioButton fx:id="radioButtonArticle" mnemonicParsing="false" text="Tidsskrift" toggleGroup="$group" />
+                  <RadioButton fx:id="radioButtonMovie" mnemonicParsing="false" onAction="#radioSelectMovie" text="Film" toggleGroup="$group" />
+                  <RadioButton fx:id="radioButtonArticle" mnemonicParsing="false" onAction="#radioSelectJournal" text="Tidsskrift" toggleGroup="$group" />
+               </children>
+            </VBox>
+            <VBox fx:id="manageStuffButtons" alignment="CENTER" layoutX="29.0" layoutY="221.0" prefHeight="83.0" prefWidth="136.0" spacing="10.0">
+               <children>
+                  <Button fx:id="addArticlesButton" alignment="CENTER" mnemonicParsing="false" onAction="#manageArticlesButton" prefHeight="26.0" prefWidth="125.0" text="Lägg till böcker" />
+                  <Button mnemonicParsing="false" onAction="#manageUsersButton" prefWidth="125.0" text="Hantera användare" />
                </children>
             </VBox>
          </children>
@@ -41,7 +47,7 @@
          <children>
             <ScrollPane fx:id="libraryScrollPane" hbarPolicy="NEVER" prefHeight="316.0" prefWidth="407.0">
                <content>
-                  <VBox fx:id="articleVBox" prefHeight="316.0" prefWidth="407.0" />
+                  <VBox fx:id="articleVBox" prefHeight="316.0" prefWidth="407.0" spacing="15.0" />
                </content></ScrollPane>
          </children>
       </StackPane>

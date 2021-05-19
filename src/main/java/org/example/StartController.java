@@ -28,23 +28,44 @@ public class StartController {
     public RadioButton radioButtonBook;
     public RadioButton radioButtonMovie;
     public RadioButton radioButtonArticle;
+    public VBox manageStuffButtons;
+    public Button addArticlesButton;
+
+
+    private String selected = "Book";
 
     public void initialize(){
+        manageStuffButtons.setVisible(false);
+        manageStuffButtons.setManaged(false);
         if(!(App.globalCurrentUser == null)){
             buttonHolder.getChildren().clear();
             Button profileButton = new Button("Profile");
+            Button logoutButton = new Button("Logga ut");
             BorderPane.setAlignment(profileButton, Pos.CENTER_RIGHT);
-        profileButton.setOnAction(actionEvent -> {
+            BorderPane.setAlignment(logoutButton, Pos.CENTER_LEFT);
+            profileButton.setOnAction(actionEvent -> {
                 try {
                     startProfileButtonPressed();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
+
+            logoutButton.setOnAction(actionEvent -> {
+                try{
+                    startLogoutButtonPressed();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            });
+            buttonHolder.setLeft(logoutButton);
             buttonHolder.setRight(profileButton);
             System.out.println(App.globalCurrentUser.getAccessLevel());
 
             if(App.globalCurrentUser.getAccessLevel() == 3){
+                manageStuffButtons.setVisible(true);
+                manageStuffButtons.setManaged(true);
+                //manageStuffButtons.setOpacity(1); //Finns nog bättre lösningar, detta får duga för tillfället med tanke på tidsramen
             }
         } else {
 
@@ -69,6 +90,11 @@ public class StartController {
 
     public void startAdminButtonPressed(ActionEvent actionEvent) throws IOException {
         App.setRoot("Admin");
+    }
+
+    public void startLogoutButtonPressed() throws IOException {
+        App.globalCurrentUser = null;
+        App.setRoot("Start");
     }
 
     public void SearchArticle(ActionEvent actionEvent) {
@@ -123,8 +149,8 @@ public class StartController {
                     labelVBox.getChildren().add(pages);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button(a.getArtikelNamn());
-                    Button loan = new Button(a.getArtikelNamn());
+                    Button favorite = new Button("Test");
+                    Button loan = new Button("Låna artikeln");
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
                     loan.setOnAction(new EventHandler() {
@@ -326,4 +352,34 @@ public class StartController {
                 }
             }
         }
+
+    public void manageArticlesButton(ActionEvent actionEvent) {
+        System.out.println("Hantera artiklar knapp1");
+        if(selected.equals("Book")){
+            System.out.println("Skapar en bok");
+        } if(selected.equals("Movie")){
+            System.out.println("Skapar en film");
+        } if(selected.equals("Journal")){
+            System.out.println("Skapar en tidsskrift");
+        }
     }
+
+    public void manageUsersButton(ActionEvent actionEvent) {
+        System.out.println("Hantera användare knapp1");
+    }
+
+    public void radioSelectBook(ActionEvent actionEvent) {
+        selected = "Book";
+        addArticlesButton.setText("Lägg till böcker");
+    }
+
+    public void radioSelectMovie(ActionEvent actionEvent) {
+        selected = "Movie";
+        addArticlesButton.setText("Lägg till filmer");
+    }
+
+    public void radioSelectJournal(ActionEvent actionEvent) {
+        selected = "Journal";
+        addArticlesButton.setText("Lägg till tidsskrifter");
+    }
+}
