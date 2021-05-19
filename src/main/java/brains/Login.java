@@ -39,9 +39,7 @@ public class Login {
                     while(rs1.next()){
                         amountActive = rs1.getInt("count(*)");
                     }
-
-
-                    return new User(rs.getString("userName"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("telNr"),rs.getInt("accesLevel"), amountActive);
+                        return new User(rs.getString("userName"),rs.getString("fName"),rs.getString("lName"),rs.getString("telNr"),rs.getString("email"),rs.getInt("age"),rs.getInt("accesLevel"),amountActive);
                 }
                 else{
                     System.out.println("Login failed");

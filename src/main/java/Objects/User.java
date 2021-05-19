@@ -4,19 +4,21 @@ public class User {
     String userName;
     String fName;
     String lName;
-    String password;
     String telNr;
+    String email;
+    int age;
     int accessLevel;
     int activeLoans;
 
-    public User(){}
+    public User() { }
 
-    public User(String userName, String fName, String lName, String password, String telNr, int accessLevel, int activeLoans) {
+    public User(String userName, String fName, String lName, String telNr, String email, int age, int accessLevel, int activeLoans) {
         this.userName = userName;
         this.fName = fName;
         this.lName = lName;
-        this.password = password;
         this.telNr = telNr;
+        this.email = email;
+        this.age = age;
         this.accessLevel = accessLevel;
         this.activeLoans = activeLoans;
     }
@@ -45,20 +47,28 @@ public class User {
         this.lName = lName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getTelNr() {
         return telNr;
     }
 
     public void setTelNr(String telNr) {
         this.telNr = telNr;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getAccessLevel() {

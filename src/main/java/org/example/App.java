@@ -1,5 +1,6 @@
 package org.example;
 
+import Objects.Artikel;
 import Objects.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static User globalCurrentUser;
+    public static Object currentArticle;
 
     @Override
     public void start(Stage stage) throws IOException {

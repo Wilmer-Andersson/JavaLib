@@ -164,6 +164,18 @@ public class StartController {
                         }
                     });
 
+                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try{
+                            App.currentArticle = a;
+                            App.setRoot("ModifyBooks");
+                        } catch (IOException throwables){
+                            throwables.printStackTrace();
+                        }
+                    }
+                });
+
                     favorite.setPrefHeight(30.0);
                     favorite.setPrefWidth(152.0);
                     loan.setPrefHeight(30.0);
@@ -213,8 +225,6 @@ public class StartController {
 
                     //Add and setup things
 
-
-
                     Label titleLabel = new Label(a.getArtikelNamn());
                     Label authorLabel = new Label(a.getRegissör());
                     Label pages = new Label(a.getSpråk());
@@ -239,6 +249,18 @@ public class StartController {
                             }
                         }
                     });
+
+                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try{
+                            App.currentArticle = a;
+                            App.setRoot("ModifyMovies");
+                        } catch (IOException throwables){
+                            throwables.printStackTrace();
+                        }
+                    }
+                });
 
                     favorite.setPrefHeight(30.0);
                     favorite.setPrefWidth(152.0);
@@ -312,6 +334,18 @@ public class StartController {
                         }
                     });
 
+                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try{
+                            App.currentArticle = a;
+                            App.setRoot("ModifyJournal");
+                        } catch (IOException throwables){
+                            throwables.printStackTrace();
+                        }
+                    }
+                });
+
                     favorite.setPrefHeight(30.0);
                     favorite.setPrefWidth(152.0);
                     loan.setPrefHeight(30.0);
@@ -353,9 +387,10 @@ public class StartController {
             }
         }
 
-    public void manageArticlesButton(ActionEvent actionEvent) {
+    public void manageArticlesButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Hantera artiklar knapp1");
         if(selected.equals("Book")){
+            App.setRoot("AddBooks");
             System.out.println("Skapar en bok");
         } if(selected.equals("Movie")){
             System.out.println("Skapar en film");
@@ -364,8 +399,9 @@ public class StartController {
         }
     }
 
-    public void manageUsersButton(ActionEvent actionEvent) {
+    public void manageUsersButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Hantera användare knapp1");
+        App.setRoot("ModifyUsers");
     }
 
     public void radioSelectBook(ActionEvent actionEvent) {
