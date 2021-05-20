@@ -62,7 +62,7 @@ public class StartController {
             buttonHolder.setRight(profileButton);
             System.out.println(App.globalCurrentUser.getAccessLevel());
 
-            if(App.globalCurrentUser.getAccessLevel() == 3){
+            if(App.globalCurrentUser.getAccessLevel() == 4){
                 manageStuffButtons.setVisible(true);
                 manageStuffButtons.setManaged(true);
                 //manageStuffButtons.setOpacity(1); //Finns nog bättre lösningar, detta får duga för tillfället med tanke på tidsramen
