@@ -6,6 +6,7 @@ import brains.OutLoan;
 import brains.Search;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class ProfileController {
     public Label telNrLabel;
     public Label activeLoansLabel;
     public VBox VBoxActiveLoan;
+    public ListView profileListView;
 
     private User user = App.globalCurrentUser;
 
@@ -36,7 +38,8 @@ public class ProfileController {
 
         if (!(testLista == null)){
             for(Artikel a: testLista){
-                VBoxActiveLoan.getChildren().add(new Label("Artikel: " +a.getArtikelNamn()));
+                //VBoxActiveLoan.getChildren().add(new Label("Artikel: " +a.getArtikelNamn()));
+                profileListView.getItems().add("Artikelnummer: "+a.getArtikelNr()+", Artikelnamn: "+a.getArtikelNamn());
             }
         }
     }
