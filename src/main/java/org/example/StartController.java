@@ -390,10 +390,11 @@ public class StartController {
     public void manageArticlesButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Hantera artiklar knapp1");
         if(selected.equals("Book")){
-            App.setRoot("AddBooks");
             System.out.println("Skapar en bok");
+            App.setRoot("AddBooks");
         } if(selected.equals("Movie")){
             System.out.println("Skapar en film");
+            App.setRoot("AddMovie");
         } if(selected.equals("Journal")){
             System.out.println("Skapar en tidsskrift");
         }

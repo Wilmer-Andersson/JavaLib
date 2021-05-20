@@ -10,18 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.RegistrerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.AddMovieController">
     <top>
         <BorderPane prefWidth="200.0" styleClass="Header" BorderPane.alignment="CENTER">
             <left>
-                <Label text="Skapa bok" BorderPane.alignment="CENTER">
+                <Label text="Lägg till film" BorderPane.alignment="CENTER">
                     <font>
                         <Font name="System Bold" size="30.0" />
                     </font>
                 </Label>
             </left>
             <right>
-                <Button mnemonicParsing="false" onAction="#registerHomeButton" text="Startsida" BorderPane.alignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#homeButton" text="Startsida" BorderPane.alignment="CENTER">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -37,7 +37,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                     <children>
-                        <VBox fx:id="registerBox1" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="registerBox">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="registerBox">
                             <children>
                                 <HBox alignment="CENTER">
                                     <children>
@@ -46,7 +46,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerFnameField1" />
+                                        <TextField fx:id="addMovieArticleID" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -56,7 +56,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerEnameField1" />
+                                        <TextField fx:id="addMovieArticleName" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -66,7 +66,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerUsernameField1" />
+                                        <TextField fx:id="addMovieLoanTime" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -76,7 +76,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerPasswordField1" />
+                                        <TextField fx:id="addMovieShelf" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -86,7 +86,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerPasswordRepeatField1" />
+                                        <TextField fx:id="addMovieAmount" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -96,7 +96,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerPhoneNrField1" />
+                                        <TextField fx:id="addMovieDescription" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -106,17 +106,12 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerMailField1" onAction="#registerButtonPressed" />
+                                        <TextField fx:id="addMovieGenre" />
                                     </children>
-                                </HBox>
-                                <HBox alignment="CENTER">
-                                    <padding>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </padding>
                                 </HBox>
                             </children>
                         </VBox>
-                        <VBox fx:id="registerBox" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="registerBox">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="registerBox">
                             <children>
                                 <HBox alignment="CENTER">
                                     <children>
@@ -125,7 +120,7 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerFnameField" />
+                                        <TextField fx:id="addMovieLanguage" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
@@ -135,54 +130,23 @@
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerEnameField" />
+                                        <TextField fx:id="addMovieReleaseDate" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER">
                                     <children>
-                                        <Label text="utgivare">
+                                        <Label text="Regissör">
                                             <font>
                                                 <Font size="17.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="registerUsernameField" />
+                                        <TextField fx:id="addMovieDirector" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER">
+                                <HBox alignment="CENTER" spacing="11.0">
                                     <children>
-                                        <Label text="ISBN">
-                                            <font>
-                                                <Font size="17.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="registerPasswordField" />
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER">
-                                    <children>
-                                        <Label text="författare">
-                                            <font>
-                                                <Font size="17.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="registerPasswordRepeatField" />
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER">
-                                    <children>
-                                        <Label text="utgåva">
-                                            <font>
-                                                <Font size="17.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="registerPhoneNrField" />
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" />
-                                <HBox alignment="CENTER" spacing="15.0">
-                                    <children>
-                                        <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonPressed" text="Lägg till bok" />
-                                    <Button fx:id="registerButton1" mnemonicParsing="false" onAction="#registerButtonPressed" text="Avbryt" />
+                                        <Button fx:id="addMovieAddButton" mnemonicParsing="false" onAction="#addMovieAddButtonPressed" text="Lägg till film" />
+                                        <Button fx:id="addMovieCancelButton" mnemonicParsing="false" onAction="#addMovieCancelButtonPressed" text="Avbryt" />
                                     </children>
                                     <padding>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
