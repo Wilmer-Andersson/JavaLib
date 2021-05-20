@@ -12,6 +12,25 @@ public class Login {
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
+    public static User tempUser(String userName){
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            PreparedStatement ps = con.prepareStatement("select * from user where userName = ?");
+            ps.setString(1,userName);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                return new User(rs.getString("userName"),rs.getString("fName"),rs.getString("lName"),rs.getString("telNr"),rs.getString("email"),rs.getInt("age"),rs.getInt("accesLevel"),0);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static User authUser(String userName, String password){
         String passHash = BCrypt.withDefaults().hashToString(12,password.toCharArray());
 

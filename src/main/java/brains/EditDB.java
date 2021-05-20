@@ -1,8 +1,4 @@
 package brains;
-
-import Objects.User;
-import at.favre.lib.crypto.bcrypt.BCrypt;
-
 import java.sql.*;
 
 public class EditDB {
@@ -10,6 +6,74 @@ public class EditDB {
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
+    public static void editUser(String FName, String LName,String Email, int AccessLevel, String TelNr, int Age, String UserName){
+
+        String accessLevel = String.valueOf(AccessLevel);
+        String age = String.valueOf(Age);
+
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+
+            String statement = "update user set fName = '" + FName + "', lName = '" + LName + "', email = '" + Email + "', accesLevel = " + accessLevel + ", telNr = '" + TelNr +"', age = " + age + " where userName = '" + UserName+"'";
+
+            PreparedStatement ps = con.prepareStatement(statement);
+
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void deleteJournal(int ArticleID){
+        String article = String.valueOf(ArticleID);
+
+        try{
+            Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+
+            String statement1 = "delete from articles where articleID = " + article;
+            String statement2 = "delete from journal  where articleID = " + article;
+
+            PreparedStatement ps1 = con.prepareStatement(statement1);
+            PreparedStatement ps2 = con.prepareStatement(statement2);
+
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+
+            con.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void addJournal(String ArticleName, int LoanTime, String StorageSpace, int Amount, String Description, int ArticleID, String Genre, String Language, Date ReleaseDate, String ISSN, String Source){
+        String loantime = String.valueOf(LoanTime);
+        String amunt = String.valueOf(Amount);
+        String articleid = String.valueOf(ArticleID);
+
+        try {
+            Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+
+            String statement1 = "insert into articles(articleID, articleName, loanTime, storageSpace, amount, description) values (" + articleid + ", '"+ ArticleName + "', " + loantime + ", '" + StorageSpace + "', " + amunt + ", '" + Description +"')";
+            String statement2 = "insert into journal(articleID, genre, language, releaseDate, ISSN, source) values (" + articleid + ",'" + Genre + "','" + Language + "','" + ReleaseDate + "', '" + ISSN + "','" + Source + "')";
+
+
+            System.out.println(statement1);
+            System.out.println(statement2);
+
+            PreparedStatement ps1 = con.prepareStatement(statement1);
+            PreparedStatement ps2 = con.prepareStatement(statement2);
+
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static void editJournal(String ArticleName, int LoanTime, String StorageSpace, int Amount, String Description, int ArticleID, String Genre, String Language, Date ReleaseDate, String ISSN, String Source){

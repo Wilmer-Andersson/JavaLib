@@ -71,9 +71,9 @@ public class ModifyBooksController {
         App.setRoot("Start");
     }
 
-    public void modifyBookDeletePressed(ActionEvent actionEvent) {
+    public void modifyBookDeletePressed(ActionEvent actionEvent) throws IOException {
         EditDB.deleteBook(Integer.parseInt(modifyBookArticleID.getText()));
-
         System.out.println("Successfully deleted " + modifyBookArticleID.getText());
+        App.setRoot("Start");
     }
 }

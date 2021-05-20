@@ -149,7 +149,7 @@ public class StartController {
                     labelVBox.getChildren().add(pages);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button("Test");
+                    Button favorite = new Button("Hantera");
                     Button loan = new Button("Låna artikeln");
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
@@ -235,7 +235,7 @@ public class StartController {
                     labelVBox.getChildren().add(pages);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button(a.getArtikelNamn());
+                    Button favorite = new Button("Hantera");
                     Button loan = new Button(a.getArtikelNamn());
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
@@ -319,7 +319,7 @@ public class StartController {
                     labelVBox.getChildren().add(pages);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button(a.getArtikelNamn());
+                    Button favorite = new Button("Hantera");
                     Button loan = new Button(a.getArtikelNamn());
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
@@ -397,6 +397,7 @@ public class StartController {
             App.setRoot("AddMovie");
         } if(selected.equals("Journal")){
             System.out.println("Skapar en tidsskrift");
+            App.setRoot("AddJournal");
         }
     }
 
