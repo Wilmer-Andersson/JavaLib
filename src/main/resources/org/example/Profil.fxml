@@ -40,6 +40,7 @@
             <Label fx:id="telNrLabel" layoutX="85.0" layoutY="129.0" text="Label" />
             <Label layoutX="10.0" layoutY="151.0" text="Aktiva lån " />
             <Label fx:id="activeLoansLabel" layoutX="85.0" layoutY="151.0" text="Label" />
+            <Button fx:id="loanBackButton" layoutX="52.0" layoutY="280.0" mnemonicParsing="false" onAction="#loanBack" text="Lämna tillbaka" />
          </children>
       </AnchorPane>
    </right>

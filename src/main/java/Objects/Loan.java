@@ -4,17 +4,19 @@ import java.util.Date;
 
 public class Loan {
     private int loanID;
-    private Artikel article;
-    private User user;
+    private int article;
+    private String userName;
     private int loanDuration;
     private Date loanStartDate;
+    private int active;
 
-    public Loan(int loanID, Artikel article, User user, int loanDuration, Date loanStartDate) {
+    public Loan(int loanID, int article, String userName, int loanDuration, Date loanStartDate, int active) {
         this.loanID = loanID;
         this.article = article;
-        this.user = user;
+        this.userName = userName;
         this.loanDuration = loanDuration;
         this.loanStartDate = loanStartDate;
+        this.active = active;
     }
 
     public int getLoanID() {
@@ -25,20 +27,20 @@ public class Loan {
         this.loanID = loanID;
     }
 
-    public Artikel getArticle() {
+    public int getArticle() {
         return article;
     }
 
-    public void setArticle(Artikel article) {
+    public void setArticle(int article) {
         this.article = article;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getLoanDuration() {
@@ -55,5 +57,13 @@ public class Loan {
 
     public void setLoanStartDate(Date loanStartDate) {
         this.loanStartDate = loanStartDate;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

@@ -1,6 +1,7 @@
 package brains;
 
 import Objects.Artikel;
+import Objects.Loan;
 import Objects.User;
 
 import java.sql.*;
@@ -14,7 +15,56 @@ public class OutLoan {
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
-    public static List searchLoans(User user) throws SQLException{
+    public static void loanBack(int LoanID,int ArticleID, int Amount){
+        String loanID = String.valueOf(LoanID);
+        String articleID = String.valueOf(ArticleID);
+        String amount = String.valueOf(Amount+1);
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            String statement1 = "update loan set active = 0 where loanID = " + loanID;
+            String statement2 = "update articles set amount = " + amount + " where articleID = " + articleID;
+
+            PreparedStatement ps1 = con.prepareStatement(statement1);
+            PreparedStatement ps2 = con.prepareStatement(statement2);
+
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public static List searchLoans(User user){
+
+        List<Loan> loanList = new ArrayList<>();
+
+        try{
+            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            String statement = "select * from loan where userName = '" + user.getUserName() + "' and active = 1";
+
+            PreparedStatement ps = con.prepareStatement(statement);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                loanList.add(new Loan(rs.getInt("loanID"),rs.getInt("articleID"),rs.getString("userName"),rs.getInt("loanDuration"),Date.valueOf(rs.getString("startDate")),rs.getInt("active")));
+            }
+
+            for (Loan l : loanList){
+                System.out.println("Låneid: " + l.getLoanID() + " articleID: " + l.getArticle() + " användare: " + l.getUserName());
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return loanList;
+    }
+
+    public static List searchLoansArticles(User user) throws SQLException{
         List<Artikel> testLista = new ArrayList<>();
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
@@ -34,8 +84,6 @@ public class OutLoan {
             }
 
             return testLista;
-
-
 
         } catch (SQLException throwables){
             return null;
