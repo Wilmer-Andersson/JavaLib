@@ -57,14 +57,14 @@ public class ProfileController {
         }
     }
 
-    public void loanBack(ActionEvent actionEvent) {
+    public void loanBackButton(ActionEvent actionEvent) {
         System.out.println(profileListView.getSelectionModel().getSelectedItem());
         String hela = (String) profileListView.getSelectionModel().getSelectedItem();
         int n = profileListView.getSelectionModel().getSelectedIndex();
         String loanID = String.valueOf(loanIDs.get(n).getLoanID());
         System.out.println(loanID);
 
-
+        OutLoan.loanBack(loanIDs.get(n).getLoanID(),loanIDs.get(n).getArticle());
 
         profileListView.getItems().remove(n);
     }

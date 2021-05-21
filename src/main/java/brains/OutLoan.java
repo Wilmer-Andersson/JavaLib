@@ -15,14 +15,16 @@ public class OutLoan {
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
-    public static void loanBack(int LoanID,int ArticleID, int Amount){
+    public static void loanBack(int LoanID,int ArticleID){
         String loanID = String.valueOf(LoanID);
         String articleID = String.valueOf(ArticleID);
-        String amount = String.valueOf(Amount+1);
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
             String statement1 = "update loan set active = 0 where loanID = " + loanID;
-            String statement2 = "update articles set amount = " + amount + " where articleID = " + articleID;
+            String statement2 = "update articles set amount = amount + 1 where articleID = " + articleID;
+
+            System.out.println(statement1);
+            System.out.println(statement2);
 
             PreparedStatement ps1 = con.prepareStatement(statement1);
             PreparedStatement ps2 = con.prepareStatement(statement2);
