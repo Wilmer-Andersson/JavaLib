@@ -43,3 +43,11 @@ Button {
 .registerBox HBox Label{
     -fx-pref-width: 150;
 }
+
+.article {
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+}
+.article Label {
+    -fx-padding: 10;
+}

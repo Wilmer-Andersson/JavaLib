@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,15 +122,9 @@ public class StartController {
 
         List<Object> articleList = Search.articlev2(searchTextBox.getText(),articleType);
 
-        List<Artikel> testLista = Search.article(searchTextBox.getText());
-
-
-        List<Object> test = new ArrayList<>();
-        test.add(new Artikel.Bok(
-                1337,"testBok",15,"lagerPlats",1,"genre","språk","utgivningsår","förlag","isbn","författare","upplaga"
-        ));
-
+        articleVBox.getChildren().clear();
         for(Object o : articleList){
+
             if(o instanceof Artikel.Bok){
                 Artikel.Bok a = (Artikel.Bok) o;
                     HBox articleHBox = new HBox();
@@ -141,15 +136,15 @@ public class StartController {
                     //Add and setup things
                     Label titleLabel = new Label(a.getArtikelNamn());
                     Label authorLabel = new Label(a.getFörfattare());
-                    Label pages = new Label(a.getFörfattare());
+                    Label amount = new Label(String.valueOf(a.getAntal()));
                     Label genre = new Label(a.getGenre());
 
                     labelVBox.getChildren().add(titleLabel);
                     labelVBox.getChildren().add(authorLabel);
-                    labelVBox.getChildren().add(pages);
+                    labelVBox.getChildren().add(amount);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button("Hantera");
+                    Button handle = new Button("Hantera");
                     Button loan = new Button("Låna artikeln");
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
@@ -157,14 +152,21 @@ public class StartController {
                         @Override
                         public void handle(Event event) {
                             try {
-                                OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
+                                if(!(App.globalCurrentUser == null)){
+                                    OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
+                                } else {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setContentText("User not logged in, can't create loan");
+                                    alert.show();
+                                    System.out.println("User not logged in, can't create loan");
+                                }
                             } catch (SQLException throwables) {
                                 throwables.printStackTrace();
                             }
                         }
                     });
 
-                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                handle.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         try{
@@ -176,18 +178,24 @@ public class StartController {
                     }
                 });
 
-                    favorite.setPrefHeight(30.0);
-                    favorite.setPrefWidth(152.0);
+                    handle.setPrefHeight(30.0);
+                    handle.setPrefWidth(60.0);
                     loan.setPrefHeight(30.0);
-                    loan.setPrefWidth(152.0);
+                    loan.setPrefWidth(60.0);
 
                     BorderPane bp = new BorderPane();
                     bp.setBottom(loan);
-                    bp.setTop(favorite);
+
+                    if(!(App.globalCurrentUser == null)){
+                        if(App.globalCurrentUser.getAccessLevel() == 4) bp.setTop(handle);
+                    }
+
+
 
                     //Set heights and widths
 
                     articleHBox.setPrefHeight(68.0);
+                    articleHBox.getStyleClass().add("article");
                     articleHBox.setPrefWidth(575.0);
 
                     labelVBox.setPrefWidth(100.0);
@@ -211,6 +219,7 @@ public class StartController {
                     articleHBox.getChildren().add(labelHBox);
                     articleHBox.getChildren().add(buttonVBox);
 
+
                     //Add to whole thingy
                     articleVBox.getChildren().add(articleHBox);
                 }
@@ -226,31 +235,38 @@ public class StartController {
                     //Add and setup things
 
                     Label titleLabel = new Label(a.getArtikelNamn());
-                    Label authorLabel = new Label(a.getRegissör());
-                    Label pages = new Label(a.getSpråk());
+                    Label director = new Label(a.getRegissör());
+                    Label amount = new Label(String.valueOf(a.getAntal()));
                     Label genre = new Label(a.getGenre());
 
                     labelVBox.getChildren().add(titleLabel);
-                    labelVBox.getChildren().add(authorLabel);
-                    labelVBox.getChildren().add(pages);
+                    labelVBox.getChildren().add(director);
+                    labelVBox.getChildren().add(amount);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button("Hantera");
-                    Button loan = new Button(a.getArtikelNamn());
+                    Button handle = new Button("Hantera");
+                    Button loan = new Button("Låna artikeln");
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
                     loan.setOnAction(new EventHandler() {
                         @Override
                         public void handle(Event event) {
                             try {
+                                if(!(App.globalCurrentUser == null)){
                                 OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
+                            } else {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setContentText("User not logged in, can't create loan");
+                                    alert.show();
+                                    System.out.println("User not logged in, can't create loan");
+                                }
                             } catch (SQLException throwables) {
                                 throwables.printStackTrace();
                             }
                         }
                     });
 
-                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                handle.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         try{
@@ -262,18 +278,21 @@ public class StartController {
                     }
                 });
 
-                    favorite.setPrefHeight(30.0);
-                    favorite.setPrefWidth(152.0);
+                    handle.setPrefHeight(30.0);
+                    handle.setPrefWidth(152.0);
                     loan.setPrefHeight(30.0);
                     loan.setPrefWidth(152.0);
 
                     BorderPane bp = new BorderPane();
                     bp.setBottom(loan);
-                    bp.setTop(favorite);
+                    if(!(App.globalCurrentUser == null)){
+                        if(App.globalCurrentUser.getAccessLevel() == 4) bp.setTop(handle);
+                    }
 
                     //Set heights and widths
 
                     articleHBox.setPrefHeight(68.0);
+                    articleHBox.getStyleClass().add("article");
                     articleHBox.setPrefWidth(575.0);
 
                     labelVBox.setPrefWidth(100.0);
@@ -310,31 +329,38 @@ public class StartController {
 
                     //Add and setup things
                     Label titleLabel = new Label(a.getArtikelNamn());
-                    Label authorLabel = new Label(a.getLagerPlats());
-                    Label pages = new Label(a.getKälla());
+                    Label source = new Label(a.getKälla());
+                    Label amount = new Label(String.valueOf(a.getAntal()));
                     Label genre = new Label(a.getGenre());
 
                     labelVBox.getChildren().add(titleLabel);
-                    labelVBox.getChildren().add(authorLabel);
-                    labelVBox.getChildren().add(pages);
+                    labelVBox.getChildren().add(source);
+                    labelVBox.getChildren().add(amount);
                     labelVBox.getChildren().add(genre);
 
-                    Button favorite = new Button("Hantera");
-                    Button loan = new Button(a.getArtikelNamn());
+                    Button handle = new Button("Hantera");
+                    Button loan = new Button("Låna artikeln");
 
                     //Sätter vad som ska hända när man klickar på knappen :=)
                     loan.setOnAction(new EventHandler() {
                         @Override
                         public void handle(Event event) {
                             try {
-                                OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
+                                if(!(App.globalCurrentUser == null)){
+                                    OutLoan.CreateLoan(App.globalCurrentUser,String.valueOf(a.getArtikelNr()),a.getLaneTid());
+                                } else {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setContentText("User not logged in, can't create loan");
+                                    alert.show();
+                                    System.out.println("User not logged in, can't create loan");
+                                }
                             } catch (SQLException throwables) {
                                 throwables.printStackTrace();
                             }
                         }
                     });
 
-                favorite.setOnAction(new EventHandler<ActionEvent>() {
+                handle.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         try{
@@ -346,18 +372,24 @@ public class StartController {
                     }
                 });
 
-                    favorite.setPrefHeight(30.0);
-                    favorite.setPrefWidth(152.0);
+                    handle.setPrefHeight(30.0);
+                    handle.setPrefWidth(152.0);
                     loan.setPrefHeight(30.0);
                     loan.setPrefWidth(152.0);
 
                     BorderPane bp = new BorderPane();
                     bp.setBottom(loan);
-                    bp.setTop(favorite);
+                    if(!(App.globalCurrentUser == null)){
+                        if(App.globalCurrentUser.getAccessLevel() == 4) bp.setTop(handle);
+                    }
 
+                    //För att man inte kan låna en tidsskrift
+                    loan.setManaged(false);
+                    loan.setVisible(false);
                     //Set heights and widths
 
                     articleHBox.setPrefHeight(68.0);
+                    articleHBox.getStyleClass().add("article");
                     articleHBox.setPrefWidth(575.0);
 
                     labelVBox.setPrefWidth(100.0);

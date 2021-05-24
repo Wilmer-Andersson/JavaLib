@@ -15,7 +15,7 @@
    <top>
       <BorderPane prefWidth="200.0" styleClass="Header" BorderPane.alignment="CENTER">
          <left>
-            <Label text="Modifiera" BorderPane.alignment="CENTER">
+            <Label text="Hantera användare" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>

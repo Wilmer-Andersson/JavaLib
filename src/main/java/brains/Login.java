@@ -2,6 +2,7 @@ package brains;
 
 import Objects.User;
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -71,12 +72,14 @@ public class Login {
             e.printStackTrace();
             return null;
         }
-        System.out.println("Login failed succesfully!");
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Användarnamnet och lösenordet tillhör inte ett konto, vänligen korrigera.");
+        alert.show();
         return null;
     }
 
 
-    public static boolean register(String userName,String fName,String lName,String telNr,String mail,String password) throws Exception {
+    public static boolean register(String userName,String fName,String lName,String telNr,String mail,String password)  {
 
         password = BCrypt.withDefaults().hashToString(12,password.toCharArray());
 
@@ -100,7 +103,10 @@ public class Login {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            throw new Exception("Password is wrong");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Felinmatning, vänligen korrigera");
+            alert.show();
+            return false;
         }
     }
 }

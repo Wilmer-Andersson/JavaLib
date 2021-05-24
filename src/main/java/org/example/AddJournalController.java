@@ -25,7 +25,7 @@ public class AddJournalController {
     }
 
     public void addJournalAddButtonPressed(ActionEvent actionEvent) {
-        EditDB.addJournal(addJournalArticleName.getText(),Integer.parseInt(addJournalLoanTime.getText()),addJournalShelf.getText(),Integer.parseInt(addJournalAmount.getText()),addJournalDescription.getText(),Integer.parseInt(addJournalArticleID.getText()),addJournalGenre.getText(),addJournalLanguage.getText(), Date.valueOf(addJournalReleaseDate.getText()),addJournalISSN.getText(),addJournalSource.getText());
+        EditDB.createJournal(addJournalArticleName.getText(),Integer.parseInt(addJournalLoanTime.getText()),addJournalShelf.getText(),Integer.parseInt(addJournalAmount.getText()),addJournalDescription.getText(),Integer.parseInt(addJournalArticleID.getText()),addJournalGenre.getText(),addJournalLanguage.getText(), Date.valueOf(addJournalReleaseDate.getText()),addJournalISSN.getText(),addJournalSource.getText());
     }
 
     public void addJournalCancelButtonPressed(ActionEvent actionEvent) throws IOException {

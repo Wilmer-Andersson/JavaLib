@@ -41,10 +41,15 @@ public class ProfileController {
         List<Artikel> testLista = OutLoan.searchLoansArticles(user);
         List<Loan> loanList = OutLoan.searchLoans(user);
 
+        System.out.println(testLista.size());
+        System.out.println(loanList.size());
+
         if (!(testLista == null)){
+            int i = 0;
             for(Loan l: loanList){
                 loanIDs.add(l);
-                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + l.getArticle() + ", Utlåningsdatum " + l.getLoanStartDate());
+                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Utlåningsdatum " + l.getLoanStartDate());
+                i++;
             }
 
             /*for(Artikel a: testLista){

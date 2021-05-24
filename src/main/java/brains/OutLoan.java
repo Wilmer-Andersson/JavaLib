@@ -3,6 +3,7 @@ package brains;
 import Objects.Artikel;
 import Objects.Loan;
 import Objects.User;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.time.*;
@@ -70,7 +71,7 @@ public class OutLoan {
         List<Artikel> testLista = new ArrayList<>();
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from loan inner join articles a on loan.articleID = a.articleID where userName = ? and active = true");
+            PreparedStatement ps = con.prepareStatement("select * from loan inner join articles a on loan.articleID = a.articleID where userName = ? and active = 1");
             ps.setString(1,user.getUserName());
             System.out.println(user.getUserName());
 
@@ -94,28 +95,35 @@ public class OutLoan {
 
     public static void CreateLoan(User user, String artikelID,int loanTime) throws SQLException {
 
+        int artID = Integer.parseInt(artikelID);
+
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
 
-            /*PreparedStatement checkAmount = con.prepareStatement("select antal from artiklar where artikelID = ?");
-            checkAmount.setString(1,artikelID);
+            String statement = "select amount from articles where articleID = " + artID;
+            PreparedStatement checkAmount = con.prepareStatement(statement);
+
             ResultSet rs = checkAmount.executeQuery();
 
-            //TODO fixa antal grejen
-            if(rs.getInt("antal") <= 1){
+            while(rs.next()){
+                if(rs.getInt("amount") >= 2){
+                    PreparedStatement ps = con.prepareStatement("insert into loan(articleID,userName,loanDuration,startDate,active) values(?,?,?,?,?)");
+                    ps.setString(1,artikelID);
+                    ps.setString(2,user.getUserName());
+                    ps.setInt(3,loanTime);
+                    ps.setDate(4, Date.valueOf(LocalDate.now()));
+                    ps.setBoolean(5,true);
 
-            }*/
+                    ps.executeUpdate();
 
-            PreparedStatement ps = con.prepareStatement("insert into loan(articleID,userName,loanDuration,startDate,active) values(?,?,?,?,?)");
-            ps.setString(1,artikelID);
-            ps.setString(2,user.getUserName());
-            ps.setInt(3,loanTime);
-            ps.setDate(4, Date.valueOf(LocalDate.now()));
-            ps.setBoolean(5,true);
-
-            ps.executeUpdate();
-
-            System.out.println("Loan created!");
+                    System.out.println("Loan created!");
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Kan ej skapa lån, för lite artkilar i lager.");
+                    alert.show();
+                    System.out.println("Can't create loan, not enough articles in stock.");
+                }
+            }
 
             con.close();
         } catch (SQLException throwables) {

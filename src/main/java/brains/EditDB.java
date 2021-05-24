@@ -1,4 +1,6 @@
 package brains;
+import javafx.scene.control.Alert;
+
 import java.sql.*;
 
 public class EditDB {
@@ -47,7 +49,7 @@ public class EditDB {
         }
     }
 
-    public static void addJournal(String ArticleName, int LoanTime, String StorageSpace, int Amount, String Description, int ArticleID, String Genre, String Language, Date ReleaseDate, String ISSN, String Source){
+    public static void createJournal(String ArticleName, int LoanTime, String StorageSpace, int Amount, String Description, int ArticleID, String Genre, String Language, Date ReleaseDate, String ISSN, String Source){
         String loantime = String.valueOf(LoanTime);
         String amunt = String.valueOf(Amount);
         String articleid = String.valueOf(ArticleID);
@@ -71,6 +73,9 @@ public class EditDB {
             con.close();
 
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Kan ej skapa artikel. Kontrollera uppgifter");
+            alert.show();
             e.printStackTrace();
         }
     }
@@ -103,14 +108,6 @@ public class EditDB {
         }
     }
 
-
-
-
-
-
-
-
-
     public static void createMovie(String ArticleName, int LoanTime, String StorageSpace, int Amount, String Description, int ArticleID, String Genre, String Language, Date ReleaseDate, String Director){
 
         String loantime = String.valueOf(LoanTime);
@@ -135,6 +132,9 @@ public class EditDB {
             con.close();
 
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Kan ej skapa artikel. Kontrollera uppgifter");
+            alert.show();
             e.printStackTrace();
         }
     }
@@ -214,6 +214,9 @@ public class EditDB {
             con.close();
 
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Kan ej skapa artikel. Kontrollera uppgifter");
+            alert.show();
             e.printStackTrace();
         }
 

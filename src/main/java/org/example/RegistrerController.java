@@ -1,6 +1,7 @@
 package org.example;
 
 import brains.Login;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -70,6 +71,10 @@ public class RegistrerController {
                                    App.setRoot("Start");
                                }
                            }
-                       } else throw new Exception("Password doesn't match");
+                       } else {
+                       Alert alert = new Alert(Alert.AlertType.WARNING);
+                       alert.setContentText("Felinmatning, vänligen korrigera");
+                       alert.show();
+                   }
                    }
     }

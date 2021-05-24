@@ -16,11 +16,14 @@ public class Search {
 /* Requires a input string, returns a list with all matching rows */
     public static List article(String searchString){
 
+
+
         List<Object> testLista = new ArrayList<>();
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            PreparedStatement ps = con.prepareStatement("select * from articles where articles.articleName like ?");
-            ps.setString(1,"%"+searchString+"%");
+            String statement = "select * from articles a join book b on a.articleID = b.articleID where a.articleName like '%" + searchString + "%' or b.author like '%"+ searchString + "%' or b.publisher like '%"+ searchString + "%' or b.genre like '%"+ searchString + "%' or b.ISBN like '%"+ searchString + "%'";
+            PreparedStatement ps = con.prepareStatement(statement);
+            //ps.setString(1,"%"+searchString+"%");
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
@@ -41,17 +44,16 @@ public class Search {
 
         List<Object> articleList = new ArrayList<>();
 
-        String articleString = "book";
+        String statement = "";
 
-        if(type == 1) articleString = "book";
-        if(type == 2) articleString = "movie";
-        if(type == 3) articleString = "journal";
+        if(type == 1) statement = "select * from articles a join book b on a.articleID = b.articleID where a.articleName like '%" + searchString + "%' or b.author like '%"+ searchString + "%' or b.publisher like '%"+ searchString + "%' or b.genre like '%"+ searchString + "%' or b.ISBN like '"+ searchString + "'";
+        if(type == 2) statement = "select * from articles a join movie m on a.articleID = m.articleID where a.articleName like '%"+ searchString + "%' or m.director like '%"+ searchString + "%' or m.genre like '%"+ searchString + "%'";
+        if(type == 3) statement = "select * from articles a join journal j on a.articleID = j.articleID where a.articleName like '%"+ searchString + "%' or j.source like '%"+ searchString + "%' or j.genre like '%"+ searchString + "%' or j.ISSN like '"+ searchString + "'";
 
         try{
             Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-            String statement = "select * from articles join "+ articleString + " on articles.articleID = "+ articleString +".articleID where articleName like ?";
+
             PreparedStatement ps = con.prepareStatement(statement);
-            ps.setString(1,"%"+searchString+"%");
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             System.out.println(type);
