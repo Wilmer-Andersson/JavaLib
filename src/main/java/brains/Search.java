@@ -8,19 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
-    static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
-    static String dbUser = "root";
-    static String dbPass = "Lösenord";
-
 
 /* Requires a input string, returns a list with all matching rows */
     public static List article(String searchString){
 
-
-
         List<Object> testLista = new ArrayList<>();
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             String statement = "select * from articles a join book b on a.articleID = b.articleID where a.articleName like '%" + searchString + "%' or b.author like '%"+ searchString + "%' or b.publisher like '%"+ searchString + "%' or b.genre like '%"+ searchString + "%' or b.ISBN like '%"+ searchString + "%'";
             PreparedStatement ps = con.prepareStatement(statement);
             //ps.setString(1,"%"+searchString+"%");
@@ -51,7 +45,7 @@ public class Search {
         if(type == 3) statement = "select * from articles a join journal j on a.articleID = j.articleID where a.articleName like '%"+ searchString + "%' or j.source like '%"+ searchString + "%' or j.genre like '%"+ searchString + "%' or j.ISSN like '"+ searchString + "'";
 
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
 
             PreparedStatement ps = con.prepareStatement(statement);
             System.out.println(ps);

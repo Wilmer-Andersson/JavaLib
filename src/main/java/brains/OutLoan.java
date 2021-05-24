@@ -12,15 +12,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OutLoan {
-    static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
-    static String dbUser = "root";
-    static String dbPass = "Lösenord";
 
     public static void loanBack(int LoanID,int ArticleID){
         String loanID = String.valueOf(LoanID);
         String articleID = String.valueOf(ArticleID);
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             String statement1 = "update loan set active = 0 where loanID = " + loanID;
             String statement2 = "update articles set amount = amount + 1 where articleID = " + articleID;
 
@@ -45,7 +42,7 @@ public class OutLoan {
         List<Loan> loanList = new ArrayList<>();
 
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             String statement = "select * from loan where userName = '" + user.getUserName() + "' and active = 1";
 
             PreparedStatement ps = con.prepareStatement(statement);
@@ -70,7 +67,7 @@ public class OutLoan {
     public static List searchLoansArticles(User user) throws SQLException{
         List<Artikel> testLista = new ArrayList<>();
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             PreparedStatement ps = con.prepareStatement("select * from loan inner join articles a on loan.articleID = a.articleID where userName = ? and active = 1");
             ps.setString(1,user.getUserName());
             System.out.println(user.getUserName());
@@ -98,7 +95,7 @@ public class OutLoan {
         int artID = Integer.parseInt(artikelID);
 
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
 
             String statement = "select amount from articles where articleID = " + artID;
             PreparedStatement checkAmount = con.prepareStatement(statement);

@@ -9,13 +9,10 @@ import java.util.Scanner;
 
 
 public class Login {
-    static String dbUrl = "jdbc:mysql://localhost:3306/bobblan";
-    static String dbUser = "root";
-    static String dbPass = "Lösenord";
 
     public static User tempUser(String userName){
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             PreparedStatement ps = con.prepareStatement("select * from user where userName = ?");
             ps.setString(1,userName);
 
@@ -36,7 +33,7 @@ public class Login {
         String passHash = BCrypt.withDefaults().hashToString(12,password.toCharArray());
 
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
 
             PreparedStatement ps = con.prepareStatement("select * from user where userName = ?");
             ps.setString(1,userName);
@@ -84,7 +81,7 @@ public class Login {
         password = BCrypt.withDefaults().hashToString(12,password.toCharArray());
 
         try{
-            Connection con = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
             PreparedStatement ps = con.prepareStatement("insert into user(userName, fName, lName, email, password, accesLevel, telNr) values(?,?,?,?,?,?,?)");
             ps.setString(1,userName);
             ps.setString(2,fName);

@@ -33,13 +33,15 @@ public class ProfileController {
     }
 
     public void initialize() throws SQLException {
+        List<Artikel> testLista = OutLoan.searchLoansArticles(user);
+        List<Loan> loanList = OutLoan.searchLoans(user);
+
         fNameLabel.setText(user.getfName());
         lNameLabel.setText(user.getlName());
         telNrLabel.setText(user.getTelNr());
-        activeLoansLabel.setText(String.valueOf(user.getActiveLoans()));
+        activeLoansLabel.setText(String.valueOf(loanList.size()));
 
-        List<Artikel> testLista = OutLoan.searchLoansArticles(user);
-        List<Loan> loanList = OutLoan.searchLoans(user);
+
 
         System.out.println(testLista.size());
         System.out.println(loanList.size());
@@ -51,20 +53,11 @@ public class ProfileController {
                 profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Utlåningsdatum " + l.getLoanStartDate());
                 i++;
             }
-
-            /*for(Artikel a: testLista){
-                for(Loan l: loanList){
-                    profileListView.getItems().add("Låne ID: " + l.getLoanID() + " ArtikelNamn: " + a.getArtikelNr() + l.getArticle());
-                }
-                //VBoxActiveLoan.getChildren().add(new Label("Artikel: " +a.getArtikelNamn()));
-                //profileListView.getItems().add("Artikelnummer: "+a.getArtikelNr()+", Artikelnamn: "+a.getArtikelNamn());
-            }*/
         }
     }
 
     public void loanBackButton(ActionEvent actionEvent) {
         System.out.println(profileListView.getSelectionModel().getSelectedItem());
-        String hela = (String) profileListView.getSelectionModel().getSelectedItem();
         int n = profileListView.getSelectionModel().getSelectedIndex();
         String loanID = String.valueOf(loanIDs.get(n).getLoanID());
         System.out.println(loanID);
