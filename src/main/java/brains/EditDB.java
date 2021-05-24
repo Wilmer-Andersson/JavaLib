@@ -3,6 +3,8 @@ import javafx.scene.control.Alert;
 
 import java.sql.*;
 
+//Alla funktioner som hanterar artiklar och användare i databasen
+
 public class EditDB {
     public static void editUser(String FName, String LName,String Email, int AccessLevel, String TelNr, int Age, String UserName){
 

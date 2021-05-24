@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -49,8 +50,16 @@ public class ProfileController {
         if (!(testLista == null)){
             int i = 0;
             for(Loan l: loanList){
+
+                // Dagens datum
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(l.getLoanStartDate());
+                calendar.add(Calendar.DAY_OF_MONTH, l.getLoanDuration());
+
+                Date returnByDate = calendar.getTime();
+
                 loanIDs.add(l);
-                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Utlåningsdatum " + l.getLoanStartDate());
+                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Återlämningsdatum:  " + returnByDate);
                 i++;
             }
         }

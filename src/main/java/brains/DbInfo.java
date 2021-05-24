@@ -7,9 +7,8 @@ public class DbInfo {
     static String dbUser = "root";
     static String dbPass = "Lösenord";
 
-    public static String getDbUrl() {
-        return dbUrl;
-    }
+    //Metoder för att hämta infon på alla ställen där det behövs.
+    public static String getDbUrl() { return dbUrl; }
 
     public static String getDbUser() {
         return dbUser;

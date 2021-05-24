@@ -9,31 +9,8 @@ import java.util.List;
 
 public class Search {
 
-/* Requires a input string, returns a list with all matching rows */
-    public static List article(String searchString){
-
-        List<Object> testLista = new ArrayList<>();
-        try{
-            Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
-            String statement = "select * from articles a join book b on a.articleID = b.articleID where a.articleName like '%" + searchString + "%' or b.author like '%"+ searchString + "%' or b.publisher like '%"+ searchString + "%' or b.genre like '%"+ searchString + "%' or b.ISBN like '%"+ searchString + "%'";
-            PreparedStatement ps = con.prepareStatement(statement);
-            //ps.setString(1,"%"+searchString+"%");
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()) {
-                testLista.add(new Artikel(rs.getInt(1), rs.getString(2),rs.getInt("loanTime")));
-            }
-
-            con.close();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return testLista;
-    }
-
-//Inputs search string and object type, 1 = book, 2 = movie, 3 = journal
+    //Söker på artiklar beroende på söksträng och artikeltyp.
+    //artikeltyp, 1 = bok, 2 = film, 3 = tidsskrift
     public static List articlev2(String searchString,int type){
 
         List<Object> articleList = new ArrayList<>();

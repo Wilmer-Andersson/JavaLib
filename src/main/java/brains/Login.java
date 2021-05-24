@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Login {
 
+    //Funktion för att skapa en temporär användare, används för att kunna hämta en användare till hantera användar metoden
     public static User tempUser(String userName){
         try{
             Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
@@ -29,9 +30,8 @@ public class Login {
         return null;
     }
 
+    //Funktion för att autentisera användare med hjälp av BCrypt. Skickar tillbaka en användare om lösenordet matchar det i databasen.
     public static User authUser(String userName, String password){
-        String passHash = BCrypt.withDefaults().hashToString(12,password.toCharArray());
-
         try{
             Connection con = DriverManager.getConnection(DbInfo.getDbUrl(),DbInfo.getDbUser(),DbInfo.getDbPass());
 
@@ -76,6 +76,7 @@ public class Login {
     }
 
 
+    //Registrerar en användare, krypterar lösenordet med hjälp av BCrypt.
     public static boolean register(String userName,String fName,String lName,String telNr,String mail,String password)  {
 
         password = BCrypt.withDefaults().hashToString(12,password.toCharArray());

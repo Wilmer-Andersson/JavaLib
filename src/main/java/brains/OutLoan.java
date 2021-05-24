@@ -9,10 +9,10 @@ import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class OutLoan {
 
+    //Avslutar ett specifikt lån och ökar antalet med 1.
     public static void loanBack(int LoanID,int ArticleID){
         String loanID = String.valueOf(LoanID);
         String articleID = String.valueOf(ArticleID);
@@ -37,6 +37,8 @@ public class OutLoan {
 
     }
 
+
+    //Retunerar en lista med alla aktiva lån som en specifik användare har.
     public static List searchLoans(User user){
 
         List<Loan> loanList = new ArrayList<>();
@@ -64,6 +66,7 @@ public class OutLoan {
         return loanList;
     }
 
+    //Retunerar en lista med alla artiklar på ett lån som en specifik användare har.
     public static List searchLoansArticles(User user) throws SQLException{
         List<Artikel> testLista = new ArrayList<>();
         try{
@@ -90,6 +93,7 @@ public class OutLoan {
         }
     }
 
+    //Skapar ett lån.
     public static void CreateLoan(User user, String artikelID,int loanTime) throws SQLException {
 
         int artID = Integer.parseInt(artikelID);
@@ -114,6 +118,10 @@ public class OutLoan {
                     ps.executeUpdate();
 
                     System.out.println("Loan created!");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Lån skapat!");
+                    alert.show();
+
                 } else {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setContentText("Kan ej skapa lån, för lite artkilar i lager.");

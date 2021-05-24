@@ -10,8 +10,6 @@ import java.sql.Date;
 
 public class AddBookController {
 
-    Artikel.Bok currentBook = (Artikel.Bok) App.currentArticle;
-
     public TextField addBookArticleID;
     public TextField addBookArticleName;
     public TextField addBookLoanTime;
@@ -25,22 +23,6 @@ public class AddBookController {
     public TextField addBookISBN;
     public TextField addBookAuthor;
     public TextField addBookEdition;
-
-    public void initialize(){
-        /* addBookArticleID.setText(String.valueOf(currentBook.getArtikelNr()));
-        addBookArticleName.setText(currentBook.getArtikelNamn());
-        addBookLoanTime.setText(String.valueOf(currentBook.getLaneTid()));
-        addBookShelf.setText(currentBook.getLagerPlats());
-        addBookAmount.setText(String.valueOf(currentBook.getAntal()));
-        addBookDescription.setText("DESCRIPTION");
-        addBookGenre.setText(currentBook.getGenre());
-        addBookLanguage.setText(currentBook.getSpråk());
-        addBookReleaseDate.setText(currentBook.getUtgivningsÅr());
-        addBookPublisher.setText(currentBook.getFörlag());
-        addBookISBN.setText(currentBook.getIsbn());
-        addBookAuthor.setText(currentBook.getFörfattare());
-        addBookEdition.setText(currentBook.getUpplaga()); */
-    }
 
     public void registerHomeButton(ActionEvent actionEvent) throws IOException {
         App.setRoot("Start");
