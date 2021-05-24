@@ -1,18 +1,3 @@
-
-    /*
-    https://coolors.co/0d1b2a-1b263b-415a77-778da9-e0e1dd
-    Mörkast blå #0D1B2A;
-    Litemörkare mörkblå #1B263B;
-    "Vanlig" blå #1415A77;
-    Ljusblå #778DA9;
-    Vit #E0E1DD;
-    */
-
-.errorAids{
-    -fx-background-color: #ff0000;
-    -fx-border-color: #ff0000;
-}
-
 .root {
 -fx-background-color: #E0E1DD;
 }

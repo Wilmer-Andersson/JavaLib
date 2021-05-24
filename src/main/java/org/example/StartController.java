@@ -66,7 +66,6 @@ public class StartController {
             if(App.globalCurrentUser.getAccessLevel() == 4){
                 manageStuffButtons.setVisible(true);
                 manageStuffButtons.setManaged(true);
-                //manageStuffButtons.setOpacity(1); //Finns nog bättre lösningar, detta får duga för tillfället med tanke på tidsramen
             }
         } else {
 
@@ -99,13 +98,6 @@ public class StartController {
     }
 
     public void SearchArticle(ActionEvent actionEvent) {
-
-        /*ToggleGroup group = new ToggleGroup();
-        radioButtonBook.setToggleGroup(group);
-        radioButtonArticle.setToggleGroup(group);
-        radioButtonMovie.setToggleGroup(group);
-        radioButtonBook.setSelected(true);
-        */
 
         int articleType = 0;
 

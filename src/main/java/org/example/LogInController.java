@@ -25,7 +25,6 @@ public class LogInController {
         currentUser = Login.authUser(username,password);
         if(currentUser == null){
             loginPasswordButton.setText("Login failed!");
-            loginPasswordButton.getStyleClass().add(".errorAids"); //Verkar inte göra nått vettigt asså
         } else{
             loginPasswordButton.setText("Login Successful!");
             App.globalCurrentUser = currentUser;
