@@ -35,6 +35,7 @@ public class StartController {
 
     private String selected = "Book";
 
+    //Laddar olika knappar etc beroende på om en användare är inloggad eller inte.
     public void initialize(){
         manageStuffButtons.setVisible(false);
         manageStuffButtons.setManaged(false);
@@ -97,8 +98,11 @@ public class StartController {
         App.setRoot("Start");
     }
 
+    //Funktion som laddar artiklar beroende på vad som användaren har sökt på.
     public void SearchArticle(ActionEvent actionEvent) {
 
+
+        //Håller koll på vilken radioknapp som är vald.
         int articleType = 0;
 
         if(radioButtonBook.isSelected()){
@@ -115,6 +119,8 @@ public class StartController {
         List<Object> articleList = Search.articlev2(searchTextBox.getText(),articleType);
 
         articleVBox.getChildren().clear();
+
+        //Forloop som går igenom alla artiklar som matchar det som användaren sökte på. Skapar sedan varje objekt en för en.
         for(Object o : articleList){
 
             if(o instanceof Artikel.Bok){
