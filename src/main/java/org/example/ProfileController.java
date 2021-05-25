@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,8 +59,13 @@ public class ProfileController {
 
                 Date returnByDate = calendar.getTime();
 
+                String pattern = "yyyy-MM-dd";
+                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                String snyggDat = sdf.format(returnByDate);
+
+
                 loanIDs.add(l);
-                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Återlämningsdatum:  " + returnByDate);
+                profileListView.getItems().add("Låne ID: " + l.getLoanID() + ", Artikel: " + testLista.get(i).getArtikelNamn() + ", Återlämningsdatum:  " + snyggDat);
                 i++;
             }
         }

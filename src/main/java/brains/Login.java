@@ -60,7 +60,10 @@ public class Login {
                 }
                 else{
                     System.out.println("Login failed");
-                    throw new Exception("Nått error typ, idk");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Användarnamnet och lösenordet tillhör inte ett konto, vänligen korrigera.");
+                    alert.show();
+                    return null;
                 }
             }
             con.close();

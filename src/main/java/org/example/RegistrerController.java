@@ -70,7 +70,11 @@ public class RegistrerController {
                                        password)) {
                                    App.setRoot("Start");
                                }
-                           }
+                           } else {
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setContentText("Felinmatning, vänligen korrigera");
+                                alert.show();
+                       }
                        } else {
                        Alert alert = new Alert(Alert.AlertType.WARNING);
                        alert.setContentText("Felinmatning, vänligen korrigera");

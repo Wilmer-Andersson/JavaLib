@@ -177,9 +177,9 @@ public class StartController {
                 });
 
                     handle.setPrefHeight(30.0);
-                    handle.setPrefWidth(60.0);
+                    handle.setPrefWidth(152.0);
                     loan.setPrefHeight(30.0);
-                    loan.setPrefWidth(60.0);
+                    loan.setPrefWidth(152.0);
 
                     BorderPane bp = new BorderPane();
                     bp.setBottom(loan);
@@ -216,7 +216,6 @@ public class StartController {
 
                     articleHBox.getChildren().add(labelHBox);
                     articleHBox.getChildren().add(buttonVBox);
-
 
                     //Add to whole thingy
                     articleVBox.getChildren().add(articleHBox);
